@@ -21,21 +21,7 @@
 	</style>
 </head>
 <body>
-        <!--MENU-->
-        <!--Būtų galima iškelti į php include-->
-        <div class ="jumbotron text-center">
-            <a href="PagrindinisPuslapis.html"><h1>ISP - AUKCIONAI</h1></a>
-            <div display: flex;
-            justify-content: space-between;
-            align="right">
-                <a href="naudotojoPuslapis.html">Naudotojo puslapis</a>
-                <a href="signin.html">Registracija</a>
-                <a href="login.html">Prisijungimas</a>
-                <a href="adminPage.html">Administravimo langas</a>
-                <a href="logout.html">Atsijungti</a>
-            </div>
-        </div>
-        <!--MENU-->
+<?php include("header.php");?>
 		
         <h2 style="background-color: #2b2d33;color:white;  padding:10px">Aukcionai:</h2>
 
@@ -47,7 +33,7 @@
 				<div class="card-body">
 					<h5 class="card-title">Supelyjusi duonos riekelė</h5>
 					<p class="card-text">Negaliu švaistyti maisto laisva ranka...</p>
-					<a href="Aukciono_langas.html" class="btn btn-primary">Peržiūrėti</a>
+					<a href="Aukciono_langas.php" class="btn btn-primary">Peržiūrėti</a>
 				</div>
 			</div>
 			
@@ -57,7 +43,7 @@
 				<div class="card-body">
 					<h5 class="card-title">Supelyjusi duonos riekelė</h5>
 					<p class="card-text">Negaliu švaistyti maisto laisva ranka...</p>
-					<a href="Aukciono_langas.html" class="btn btn-primary">Peržiūrėti</a>
+					<a href="Aukciono_langas.php" class="btn btn-primary">Peržiūrėti</a>
 				</div>
 			</div>
 		</div>

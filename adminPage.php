@@ -10,22 +10,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
       </head>
 
-    <body>
-        <!--MENU-->
-        <!--Būtų galima iškelti į php include-->
-        <div class ="jumbotron text-center">
-            <a href="PagrindinisPuslapis.html"><h1>ISP - AUCIONAI</h1></a>
-            <div display: flex;
-            justify-content: space-between;
-            align="right">
-                <a href="naudotojoPuslapis.html">Naudotojo puslapis</a>
-                <a href="signin.html">Registracija</a>
-                <a href="login.html">Prisijungimas</a>
-                <a href="adminPage.html">Administravimo langas</a>
-                <a href="logout.html">Atsijungti</a>
-            </div>
-        </div>
-        <!--MENU-->
+    <?php include("header.php");?>
 
         <div class="container">
             <div class="row">
@@ -34,7 +19,7 @@
 
                 <div class="row">
                   <div class="col-sm bg-light p-3">
-                    <a href="nepatvirtintos.html">Nepatvirtintų prekių sąrašas</a>
+                    <a href="nepatvirtintos.php">Nepatvirtintų prekių sąrašas</a>
                   </div>
                   <div class="col-sm bg-light p-3">
                     B

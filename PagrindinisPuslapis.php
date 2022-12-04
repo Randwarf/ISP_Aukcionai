@@ -21,21 +21,7 @@
 	</head>
 
     <body>
-        <!--MENU-->
-        <!--Būtų galima iškelti į php include-->
-        <div class ="jumbotron text-center">
-            <a href="PagrindinisPuslapis.html"><h1>ISP - AUCIONAI</h1></a>
-            <div display: flex;
-            justify-content: space-between;
-            align="right">
-                <a href="naudotojoPuslapis.html">Naudotojo puslapis</a>
-                <a href="signin.html">Registracija</a>
-                <a href="login.html">Prisijungimas</a>
-                <a href="adminPage.html">Administravimo langas</a>
-                <a href="logout.html">Atsijungti</a>
-            </div>
-        </div>
-        <!--MENU-->
+	<?php include("header.php");?>
 
 
 
@@ -56,7 +42,7 @@
 					<div class="card" style="width: 18rem; border:1;">
 						<img src="https://pienozvaigzdes.lt/lt/1090-large_default/dvaro-pienas-25-riebumo-1l.jpg" class="card-img-top" alt="...">
 						<div class="card-body">
-							<a class="card-title" href="Aukciono_langas.html">Sugižęs pienas</a>
+							<a class="card-title" href="Aukciono_langas.php">Sugižęs pienas</a>
 							<p class="card-text">Negaliu švaistyti maisto laisva ranka...</p>
 						</div>
 					</div>
@@ -64,7 +50,7 @@
 					<div class="card" style="width: 18rem; border:1;">
 						<img src="https://i.guim.co.uk/img/static/sys-images/Guardian/Pix/pictures/2014/4/9/1397037075399/Piece-of-burnt-toast-011.jpg?width=465&quality=85&dpr=1&s=none" class="card-img-top" alt="...">
 						<div class="card-body">
-							<a class="card-title" href="Aukciono_langas.html">Sudegęs skrebutis</a>
+							<a class="card-title" href="Aukciono_langas.php">Sudegęs skrebutis</a>
 							<p class="card-text">Negaliu švaistyti maisto laisva ranka...</p>
 						</div>
 					</div>
@@ -72,7 +58,7 @@
 					<div class="card" style="width: 18rem; border:1;">
 						<img src="https://sekunde.lt/content/uploads/2021/07/ilgoji-parduotuve_sasyska_Foto-I-Stulgait%C4%97-Kriukien%C4%97.jpg" class="card-img-top" alt="...">
 						<div class="card-body">
-							<a class="card-title" href="Aukciono_langas.html">Sasyska</a>
+							<a class="card-title" href="Aukciono_langas.php">Sasyska</a>
 							<p class="card-text">Negaliu švaistyti maisto laisva ranka...</p>
 						</div>
 					</div>
@@ -80,7 +66,7 @@
 					<div class="card" style="width: 18rem; border:1;">
 						<img src="https://thumbs.dreamstime.com/z/horse-drawn-cart-hay-2630917.jpg" class="card-img-top" alt="...">
 						<div class="card-body">
-							<a class="card-title" href="Aukciono_langas.html">Lamborghini</a>
+							<a class="card-title" href="Aukciono_langas.php">Lamborghini</a>
 							<p class="card-text">Negaliu švaistyti maisto laisva ranka...</p>
 						</div>
 					</div>
@@ -89,9 +75,9 @@
 
               </div>
               <div class="col-2 p-3">
-				<div class="row"><a href="Aukcionu_saraso_langas.html">Automobiliai</a></div>
-                <div class="row"><a href="Aukcionu_saraso_langas.html">Antikvaras</a></div>
-                <div class="row"><a href="Aukcionu_saraso_langas.html">Etc.</a></div>
+				<div class="row"><a href="Aukcionu_saraso_langas.php">Automobiliai</a></div>
+                <div class="row"><a href="Aukcionu_saraso_langas.php">Antikvaras</a></div>
+                <div class="row"><a href="Aukcionu_saraso_langas.php">Etc.</a></div>
               </div>
             </div>
           </div>

@@ -11,24 +11,10 @@
       </head>
 
     <body>
-        <!--MENU-->
-        <!--Būtų galima iškelti į php include-->
-        <div class ="jumbotron text-center">
-            <a href="PagrindinisPuslapis.html"><h1>ISP - AUCIONAI</h1></a>
-            <div display: flex;
-            justify-content: space-between;
-            align="right">
-                <a href="naudotojoPuslapis.html">Naudotojo puslapis</a>
-                <a href="signin.html">Registracija</a>
-                <a href="login.html">Prisijungimas</a>
-                <a href="adminPage.html">Administravimo langas</a>
-                <a href="logout.html">Atsijungti</a>
-            </div>
-        </div>
-        <!--MENU-->
+    <?php include("header.php");?>
 
         <div style="margin:auto;max-width:800px">
-            <a href="aukcionoPuslapis.html">ATGAL</a>
+            <a href="aukcionoPuslapis.php">ATGAL</a>
             <form>
                 <table class="table center">
                     <tr>

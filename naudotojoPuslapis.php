@@ -33,41 +33,28 @@
       </head>
 
     <body>
-        <!--MENU-->
-        <!--Būtų galima iškelti į php include-->
-        <div class ="jumbotron text-center">
-            <a href="PagrindinisPuslapis.html"><h1>ISP - AUKCIONAI</h1></a>
-            <div display: flex;
-            justify-content: space-between;
-            align="right">
-                <a href="naudotojoPuslapis.html">Naudotojo puslapis</a>
-                <a href="signin.html">Registracija</a>
-                <a href="login.html">Prisijungimas</a>
-                <a href="adminPage.html">Administravimo langas</a>
-                <a href="logout.html">Atsijungti</a>
-            </div>
-        </div>
+    <?php include("header.php");?>
         <h2 style="background-color: #2b2d33;color:white;  padding:10px">Naudotojo puslapis</h2>
 
         <div class="container-fluid">
             <div class="row justify-content-start">
                 <div class="col-3">
-                    <form action="Žinutės_Puslapis.html">
+                    <form action="Žinutės_Puslapis.php">
                         <button class="button" >Žinutės</button>
                     </form>
-                    <form action="Adreso_atnaujinimo_puslapis.html">
+                    <form action="Adreso_atnaujinimo_puslapis.php">
                         <button class="button">Atnaujinti adresą</button>
                     </form>
-                    <form action="Atsiskaitymo_puslapis.html">
+                    <form action="Atsiskaitymo_puslapis.php">
                         <button class="button">Atsiskaitymai</button>
                     </form>
-                    <form action="Mokejimo_duomenu_redagavimo_puslapis.html">
+                    <form action="Mokejimo_duomenu_redagavimo_puslapis.php">
                         <button class="button">Redaguoti mokėjimo duomenis</button>
                     </form>
-                    <form action="blokavimoPuslapis.html">
+                    <form action="blokavimoPuslapis.php">
                         <button class="button">Blokavimo puslapis</button>
                     </form>
-                    <form action="stebimi.html">
+                    <form action="stebimi.php">
                         <button class="button">Stebimi aukcionai</button>
                     </form>
                 </div>

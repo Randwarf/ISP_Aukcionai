@@ -11,16 +11,7 @@
       </head>
 
     <body>
-        <div class ="jumbotron text-center">
-            <a href="PagrindinisPuslapis.html"><h1>ISP - AUCIONAI</h1></a>
-            <div display: flex;justify-content: space-between;align="right">
-                <a href="naudotojoPuslapis.html">Naudotojo puslapis</a>
-                <a href="signin.html">Registracija</a>
-                <a href="login.html">Prisijungimas</a>
-                <a href="adminPage.html">Administravimo langas</a>
-                <a href="logout.html">Atsijungti</a>
-            </div>
-        </div>
+    <?php include("header.php");?>
 
         <div class="container">
               <div class="col-12 card card-body bg-light p-4">
@@ -68,7 +59,7 @@
                </form>
 
                <form>
-                <input type="button" class="btn btn-primary" value="Inicijuoti" onclick="window.location.href='Aukciono_iniciavimas.html'"\>
+                <input type="button" class="btn btn-primary" value="Inicijuoti" onclick="window.location.href='Aukciono_iniciavimas.php'"\>
                </form>
             </div>
           </div>
