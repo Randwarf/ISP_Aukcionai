@@ -135,11 +135,25 @@
 
               ?>
               <!-- Komentaro paskelbimas-->
-              <form method="get">
+              <form method="post">
                 <br>
                 <input name="comment" id="comment" type="text" placeholder="Įveskite savo komentarą" class="form-control">
                 <input type="submit" value="Paskelbti komentarą" class="form-control">
-               </form>
+              </form>
+
+              <?php
+
+              //Vartotojas įhardcodintas, nes neturim prisijungimo
+              //Parefreshinus puslapį tas pats komentaras vėl išsiunčiamas, neparefreshinus nerodo komentaro. 
+              //Formoje dedam action į kitą puslapį ir redirectinam atgal į čia? Sugenda 'atgal' mygtukas
+              if(isset($_POST['comment'])){
+                $query = "INSERT INTO komentaras (tekstas, fk_Aukcionasid_Aukcionas, fk_Vartotojasid_Vartotojas)
+                          VALUES ('" . $_POST['comment'] . "','" . $_GET['id'] . "','3')";
+
+                mysqli_query($db, $query);
+              }
+
+              ?>
             </div>
           </div>
 
