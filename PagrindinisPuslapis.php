@@ -75,6 +75,7 @@
 
               </div>
               <div class="col-2 p-3">
+			  	<div class='row'><a href='Aukcionu_saraso_langas.php'>Visi</a></div>
 				<?php
                 $db = mysqli_connect(config::DB_SERVER, config::DB_USERNAME, config::DB_PASSWORD, config::DB_NAME);
                 $query = "SELECT * FROM kategorija ORDER BY name ASC";

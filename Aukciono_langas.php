@@ -36,45 +36,66 @@
     <body>
     <?php include("header.php");?>
 
+    <?php
+
+    $db = mysqli_connect(config::DB_SERVER, config::DB_USERNAME, config::DB_PASSWORD, config::DB_NAME);
+
+    if (!isset($_GET['id'])){
+      echo "NĖRA AUKCIONO ID";
+      exit;
+    }
+    $id = $_GET['id'];
+
+    $query = "SELECT *, kategorija.name as name2
+              FROM aukcionas
+              INNER JOIN preke ON preke.id_Preke=aukcionas.fk_Prekeid_Preke
+              INNER JOIN nuotrauka ON nuotrauka.fk_Prekeid_Preke=preke.id_Preke
+              INNER JOIN kategorija ON kategorija.id_KATEGORIJA=preke.kategorija
+              INNER JOIN statusas ON statusas.id_STATUSAS=aukcionas.statusas
+              WHERE aukcionas.id_Aukcionas=".$id;
+    $result = mysqli_query($db, $query);
+    $result = mysqli_fetch_assoc($result);
+    ?>
+
         <div class="container">
               <div class="col-12 card card-body bg-light p-4">
                 <div class="row"> 
                   <div class="col-4">
-                    <img style="max-width:100%; max-height:100%;"src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/African_child.jpg/1200px-African_child.jpg" alt="Blue toy">
+                    <img style="max-width:100%; max-height:100%;"src=<?php echo "'".$result['nuoroda']."'";?> alt="Blue toy">
                 </div>
                 <div class="col-8">
                   <!-- Data-->
                   <div class="div-group">
                     <label>Aukciono gyvavimo trukmė:</label>
-                    <label style="font-weight: bold;">2000-05-10</label>
+                    <label style="font-weight: bold;"><?php echo $result['pradzia'];?></label>
                     <label> - </label>
-                    <label style="font-weight: bold;">2022-11-05</label>
+                    <label style="font-weight: bold;"><?php echo $result['pabaiga'];?></label>
                   </div>
                   <!-- Pavadinimas-->
                   <div class="div-group">
                     <label>Prekės pavadinimas:</label>
-                    <label>Prekė 1</label>
+                    <label><?php echo $result['pavadinimas'];?></label>
                   </div>
                   <!-- Kategorija-->
                   <div class="div-group">
                     <label for="kategorija">Kategorija: </label>
-                    <label>Kita</label>
+                    <label><?php echo $result['name2'];?></label>
                   </div>
                   <!-- Aprasymas-->
                   <div class="div-group">
                     <label for="aprasymas">Aprašymas:</label>
                       <div class="input-group">
-                        <textarea readonly placeholder="$aprasymas" id="aprasymas" class="form-control">Parduodamas mėlynas mažai naudotas žaislas vos tik 5 eur.</textarea>
+                        <textarea readonly placeholder="$aprasymas" id="aprasymas" class="form-control"><?php echo $result['aprasymas'];?></textarea>
                       </div>
                   </div>
                   <!-- Statusas-->
                   <div class="div-group">
                     <label for="nuotrauka">Aukciono būsena:</label>
-                    <label for="nuotrauka">Aktyvi</label>
+                    <label for="nuotrauka"><?php echo $result['name'];?></label>
                   </div>
                   <!-- Min/Max-->
                   <form>
-                    <label for="quantity">Statoma suma: (min 100 max 500):</label>
+                    <label for="quantity">Statoma suma: (min <?php echo $result['min'];?> max <?php echo $result['max'];?>):</label>
                     <input type="number" id="quantity" name="quantity" min="100" max="500">
                     <input type="submit" value="Statyti">
                    </form>
