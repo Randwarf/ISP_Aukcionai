@@ -124,9 +124,10 @@
               foreach ($result as $row){
                 echo "<div class='div-group'>
                 <div style='font-weight: bolder;'>".$row['vardas']." ".$row['pavarde']."</div>
-                <div style='font-weight: lighter;'>".$row['tekstas']."</div>
-                <button class='btna'>Delete</button>
-              </div>";
+                <div style='font-weight: lighter;'>".$row['tekstas']."</div>";
+
+                echo "<button onclick=\"window.location.href='http://localhost/ISP_Aukcionai/trinti_komentara.php?id=".$row['id_Komentaras']."&back=".$_GET['id']."';\" class='btna'>Delete</button>";
+                echo "</div>";
               }
 
               if (mysqli_num_rows($result) <= 0){
@@ -135,24 +136,13 @@
 
               ?>
               <!-- Komentaro paskelbimas-->
-              <form method="post">
+              <form method="post" action="skelbti_komentara.php?id=<?php echo $id;?>">
                 <br>
                 <input name="comment" id="comment" type="text" placeholder="Įveskite savo komentarą" class="form-control">
                 <input type="submit" value="Paskelbti komentarą" class="form-control">
               </form>
 
               <?php
-
-              //Vartotojas įhardcodintas, nes neturim prisijungimo
-              //Parefreshinus puslapį tas pats komentaras vėl išsiunčiamas, neparefreshinus nerodo komentaro. 
-              //Formoje dedam action į kitą puslapį ir redirectinam atgal į čia? Sugenda 'atgal' mygtukas
-              if(isset($_POST['comment'])){
-                $query = "INSERT INTO komentaras (tekstas, fk_Aukcionasid_Aukcionas, fk_Vartotojasid_Vartotojas)
-                          VALUES ('" . $_POST['comment'] . "','" . $_GET['id'] . "','3')";
-
-                mysqli_query($db, $query);
-              }
-
               ?>
             </div>
           </div>
