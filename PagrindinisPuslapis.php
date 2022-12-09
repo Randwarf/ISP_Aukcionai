@@ -29,7 +29,7 @@
         <div class="container-fluid" style="width:99%">
 			<div class="row" >
 				<div class="col-10 p-3" style="background-color: #2b2d33;color:white;">
-					<h2 >Aukcionai:</h2>
+					<h2 >Naujausi aukcionai:</h2>
 				</div>
 				<div class="col-2 p-3" style="background-color: #272730;color:white;">
 					<h2 >Kategorijos</h2>
@@ -38,38 +38,30 @@
             <div class="row">
               <div class="col-10 p-3">
 				<div class="content">
-					<!--veina prekės kortele-->
-					<div class="card" style="width: 18rem; border:1;">
-						<img src="https://pienozvaigzdes.lt/lt/1090-large_default/dvaro-pienas-25-riebumo-1l.jpg" class="card-img-top" alt="...">
-						<div class="card-body">
-							<a class="card-title" href="Aukciono_langas.php">Sugižęs pienas</a>
-							<p class="card-text">Negaliu švaistyti maisto laisva ranka...</p>
-						</div>
-					</div>
-					<!--veina prekės kortele-->
-					<div class="card" style="width: 18rem; border:1;">
-						<img src="https://i.guim.co.uk/img/static/sys-images/Guardian/Pix/pictures/2014/4/9/1397037075399/Piece-of-burnt-toast-011.jpg?width=465&quality=85&dpr=1&s=none" class="card-img-top" alt="...">
-						<div class="card-body">
-							<a class="card-title" href="Aukciono_langas.php">Sudegęs skrebutis</a>
-							<p class="card-text">Negaliu švaistyti maisto laisva ranka...</p>
-						</div>
-					</div>
-					<!--veina prekės kortele-->
-					<div class="card" style="width: 18rem; border:1;">
-						<img src="https://sekunde.lt/content/uploads/2021/07/ilgoji-parduotuve_sasyska_Foto-I-Stulgait%C4%97-Kriukien%C4%97.jpg" class="card-img-top" alt="...">
-						<div class="card-body">
-							<a class="card-title" href="Aukciono_langas.php">Sasyska</a>
-							<p class="card-text">Negaliu švaistyti maisto laisva ranka...</p>
-						</div>
-					</div>
-					<!--veina prekės kortele-->
-					<div class="card" style="width: 18rem; border:1;">
-						<img src="https://thumbs.dreamstime.com/z/horse-drawn-cart-hay-2630917.jpg" class="card-img-top" alt="...">
-						<div class="card-body">
-							<a class="card-title" href="Aukciono_langas.php">Lamborghini</a>
-							<p class="card-text">Negaliu švaistyti maisto laisva ranka...</p>
-						</div>
-					</div>
+
+					<?php
+
+					$db = mysqli_connect(config::DB_SERVER, config::DB_USERNAME, config::DB_PASSWORD, config::DB_NAME);
+					$query = "SELECT * 
+							  FROM preke
+							  INNER JOIN aukcionas ON preke.id_Preke=aukcionas.fk_Prekeid_Preke
+							  LEFT JOIN nuotrauka ON preke.id_Preke=nuotrauka.fk_Prekeid_Preke
+							  WHERE aukcionas.statusas=1
+							  ORDER BY data desc
+							  LIMIT 5";
+
+					$result = mysqli_query($db, $query);
+					foreach ($result as $item){
+						echo "<div class='card' style='width: 18rem; border:1;'>
+							  <img src='" . $item['nuoroda'] . "' class='card-img-top' alt='...'>
+							  <div class='card-body'>
+		                      <h5 class='card-title'>". $item['pavadinimas']."</h5>
+		                      <p class='card-text'>".$item['aprasymas']."</p>
+		                      <a href='Aukciono_langas.php?id=".$item['id_Aukcionas']."' class='btn btn-primary'>Peržiūrėti</a>
+	                          </div>
+                              </div>";
+}
+					?>
 				</div>
 
 
