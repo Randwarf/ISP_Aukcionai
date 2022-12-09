@@ -113,16 +113,27 @@
               
             </div>
             <div class="col-12 card card-body bg-light p-4">
-              <div class="div-group">
-                <div style="font-weight: bolder;">Vardenis1</div>
-                <div style="font-weight: lighter;">Kažkokia nesąmonė, ar tai relikvija už tokią kainą?</div>
-                <button class="btna">Delete</button>
-              </div>
-              <div class="div-group">
-                <div style="font-weight: bolder;">Vardenis2</div>
-                <div style="font-weight: lighter;">Wow kokia nuostabi prekė</div>
-                <button class="btna">Delete</button>
-              </div>
+              <?php
+
+              $query = "SELECT * FROM komentaras
+                        INNER JOIN vartotojas ON komentaras.fk_Vartotojasid_Vartotojas=vartotojas.id_Vartotojas
+                        WHERE fk_Aukcionasid_Aukcionas=" . $id;
+
+              $result = mysqli_query($db, $query);
+
+              foreach ($result as $row){
+                echo "<div class='div-group'>
+                <div style='font-weight: bolder;'>".$row['vardas']." ".$row['pavarde']."</div>
+                <div style='font-weight: lighter;'>".$row['tekstas']."</div>
+                <button class='btna'>Delete</button>
+              </div>";
+              }
+
+              if (mysqli_num_rows($result) <= 0){
+                echo "Komentarų dar nėra. Būk pirmas!";
+              }
+
+              ?>
               <!-- Komentaro paskelbimas-->
               <form method="get">
                 <br>
