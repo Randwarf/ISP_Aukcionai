@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 09, 2022 at 01:29 PM
+-- Generation Time: Dec 09, 2022 at 02:29 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -81,7 +81,7 @@ CREATE TABLE `aukcionas` (
   `statusas` int(11) NOT NULL,
   `id_Aukcionas` int(11) NOT NULL,
   `fk_Administratoriusid_Administratorius` int(11) NOT NULL,
-  `fk_Vartotojasid_Vartotojas` int(11) NOT NULL,
+  `fk_Vartotojasid_Vartotojas` int(11) DEFAULT NULL,
   `fk_Prekeid_Preke` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -90,7 +90,8 @@ CREATE TABLE `aukcionas` (
 --
 
 INSERT INTO `aukcionas` (`pradzia`, `pabaiga`, `min`, `max`, `galutine_kaina`, `statusas`, `id_Aukcionas`, `fk_Administratoriusid_Administratorius`, `fk_Vartotojasid_Vartotojas`, `fk_Prekeid_Preke`) VALUES
-('2022-12-09 12:47:56', '2022-12-24 13:47:57', 10, 500, NULL, 1, 1, 1, 1, 1);
+('2022-12-09 12:47:56', '2022-12-24 13:47:57', 10, 500, NULL, 1, 1, 1, NULL, 1),
+('2022-12-09 14:18:00', '2022-12-09 14:18:00', 1000, 5000, NULL, 1, 3, 1, NULL, 3);
 
 -- --------------------------------------------------------
 
@@ -149,12 +150,12 @@ CREATE TABLE `kategorija` (
 --
 
 INSERT INTO `kategorija` (`id_KATEGORIJA`, `name`) VALUES
-(1, 'automobiliai'),
-(2, 'antikvaras'),
-(3, 'elektronika'),
-(4, 'baldai'),
-(5, 'kita'),
-(6, 'laisvalaikis');
+(1, 'Automobiliai'),
+(2, 'Antikvaras'),
+(3, 'Elektronika'),
+(4, 'Baldai'),
+(5, 'Kita'),
+(6, 'Laisvalaikis');
 
 -- --------------------------------------------------------
 
@@ -261,7 +262,8 @@ CREATE TABLE `nuotrauka` (
 --
 
 INSERT INTO `nuotrauka` (`pavadinimas`, `nuoroda`, `formatas`, `id_Nuotrauka`, `fk_Prekeid_Preke`) VALUES
-('laikrodis', 'foto/laikrodis.jpg', 2, 1, 1);
+('laikrodis', 'foto/laikrodis.jpg', 2, 1, 1),
+('corolla verso', 'foto/TOYOTA-Corolla-Verso-647_20.jpg', 2, 2, 3);
 
 -- --------------------------------------------------------
 
@@ -284,7 +286,8 @@ CREATE TABLE `preke` (
 
 INSERT INTO `preke` (`aprasymas`, `data`, `pavadinimas`, `kategorija`, `id_Preke`, `fk_Vartotojasid_Vartotojas`) VALUES
 ('Gražus antikvarinis laikrodis', '2022-12-09 13:42:36', 'Laikrodis', 2, 1, 1),
-('Senovinis žaislas, XIXa., Anglija', '2022-12-09 13:42:47', 'Senovinis žaislas', 2, 2, 1);
+('Senovinis žaislas, XIXa., Anglija', '2022-12-09 13:42:47', 'Senovinis žaislas', 2, 2, 1),
+('Tvarkinga, 2003m, 305k km rida, tepalai tik ką pakeisti', '2022-12-09 15:16:06', 'Toyota Corolla Verso', 1, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -563,7 +566,7 @@ ALTER TABLE `adresas`
 -- AUTO_INCREMENT for table `aukcionas`
 --
 ALTER TABLE `aukcionas`
-  MODIFY `id_Aukcionas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_Aukcionas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `blokuotas_vartotojas`
@@ -593,13 +596,13 @@ ALTER TABLE `miestas`
 -- AUTO_INCREMENT for table `nuotrauka`
 --
 ALTER TABLE `nuotrauka`
-  MODIFY `id_Nuotrauka` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_Nuotrauka` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `preke`
 --
 ALTER TABLE `preke`
-  MODIFY `id_Preke` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_Preke` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `salis`
