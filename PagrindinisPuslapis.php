@@ -75,9 +75,14 @@
 
               </div>
               <div class="col-2 p-3">
-				<div class="row"><a href="Aukcionu_saraso_langas.php">Automobiliai</a></div>
-                <div class="row"><a href="Aukcionu_saraso_langas.php">Antikvaras</a></div>
-                <div class="row"><a href="Aukcionu_saraso_langas.php">Etc.</a></div>
+				<?php
+                $db = mysqli_connect(config::DB_SERVER, config::DB_USERNAME, config::DB_PASSWORD, config::DB_NAME);
+                $query = "SELECT * FROM kategorija ORDER BY name ASC";
+                $result = mysqli_query($db, $query);
+				foreach ($result as $row){
+	                echo "<div class='row'><a href='Aukcionu_saraso_langas.php?id=" .$row['id_KATEGORIJA']. "'>" .$row['name']. "</a></div>";
+				}
+				?>
               </div>
             </div>
           </div>

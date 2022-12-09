@@ -26,26 +26,35 @@
         <h2 style="background-color: #2b2d33;color:white;  padding:10px">Aukcionai:</h2>
 
 		<div class="content">
-		
-			<!--veina prekės kortele-->
-			<div class="card" style="width: 18rem; border:1;">
-				<img src="https://i.guim.co.uk/img/static/sys-images/Guardian/Pix/pictures/2014/4/9/1397037075399/Piece-of-burnt-toast-011.jpg?width=465&quality=85&dpr=1&s=none" class="card-img-top" alt="...">
-				<div class="card-body">
-					<h5 class="card-title">Supelyjusi duonos riekelė</h5>
-					<p class="card-text">Negaliu švaistyti maisto laisva ranka...</p>
-					<a href="Aukciono_langas.php" class="btn btn-primary">Peržiūrėti</a>
+			<?php
+			$db = mysqli_connect(config::DB_SERVER, config::DB_USERNAME, config::DB_PASSWORD, config::DB_NAME);
+			$kategorija = "kategorija";
+			if (isset($_GET['id'])){
+	            $kategorija = $_GET['id'];
+			}
+
+            $query = "SELECT * 
+					FROM preke
+					INNER JOIN aukcionas ON preke.id_Preke=aukcionas.fk_Prekeid_Preke
+					LEFT JOIN nuotrauka ON preke.id_Preke=nuotrauka.fk_Prekeid_Preke
+					WHERE preke.kategorija=" . $kategorija . "
+					AND aukcionas.statusas=1";
+
+            $result = mysqli_query($db, $query);
+			if (mysqli_num_rows($result) <= 0){
+	            echo "DEJA PREKIŲ NĖRA";
+			}
+            foreach ($result as $item){
+	            echo "<div class='card' style='width: 18rem; border:1;'>
+				<img src='" . $item['nuoroda'] . "' class='card-img-top' alt='...'>
+				<div class='card-body'>
+					<h5 class='card-title'>". $item['pavadinimas']."</h5>
+					<p class='card-text'>".$item['aprasymas']."</p>
+					<a href='Aukciono_langas.php?id=".$item['id_Aukcionas']."' class='btn btn-primary'>Peržiūrėti</a>
 				</div>
-			</div>
+			</div>";
+			}
 			
-			<!--veina prekės kortele-->
-			<div class="card" style="width: 18rem; border:1;">
-				<img src="https://i.guim.co.uk/img/static/sys-images/Guardian/Pix/pictures/2014/4/9/1397037075399/Piece-of-burnt-toast-011.jpg?width=465&quality=85&dpr=1&s=none" class="card-img-top" alt="...">
-				<div class="card-body">
-					<h5 class="card-title">Supelyjusi duonos riekelė</h5>
-					<p class="card-text">Negaliu švaistyti maisto laisva ranka...</p>
-					<a href="Aukciono_langas.php" class="btn btn-primary">Peržiūrėti</a>
-				</div>
-			</div>
-		</div>
+			?>
 </body>
 </html>
