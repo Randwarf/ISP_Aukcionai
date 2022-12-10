@@ -17,6 +17,7 @@
     $query= "SELECT *, preke.pavadinimas as ppavadinimas FROM preke
              INNER JOIN nuotrauka ON preke.id_Preke=nuotrauka.fk_Prekeid_Preke
              INNER JOIN kategorija ON preke.kategorija=kategorija.id_KATEGORIJA
+             INNER JOIN aukcionas ON preke.id_Preke=aukcionas.fk_Prekeid_Preke
              WHERE id_Preke=".$_GET['id'];
 
     $result = mysqli_query($db, $query);
@@ -68,9 +69,13 @@
                 <input type="button" class="btn btn-primary" value="Atmesti" onclick="window.location.href='atmesti.php?id=<?php echo $_GET['id'];?>'">
                </form>
 
-               <form>
-                <input type="button" class="btn btn-primary" value="Inicijuoti" onclick="window.location.href='Aukciono_iniciavimas.php?id=<?php echo $_GET['id'];?>'"\>
-               </form>
+               <?php
+               if ($result['statusas']==1){
+                 echo "<form>";
+                 echo "<input type='button' class='btn btn-primary' value='Inicijuoti' onclick='window.location.href='Aukciono_iniciavimas.php?id=" . $_GET['id'] . "\>";
+                 echo "</form>";
+               }
+               ?>
             </div>
           </div>
 
