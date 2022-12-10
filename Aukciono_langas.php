@@ -108,7 +108,7 @@
                   <input style="margin-right:10px; margin-left:10px" type="button" class="btn btn-primary" value="Grįžti" onclick="history.back()">
                  </form>
                  <button style="margin-right:10px" class="btn"><i class="fa fa-star"></i></button>
-                 <button class="btn"><i class="fa fa-trash"></i></button>
+                 <button onclick="window.location.href='istrinti_aukciona.php?id=<?php echo $_GET['id'];?>'" class="btn"><i class="fa fa-trash"></i></button>
               </div>
               
             </div>
