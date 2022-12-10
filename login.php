@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<?php
+session_start();
+include "config.php";
+?>
 <html>
 <head>
 	<title>Prisijungti</title>
@@ -70,10 +74,9 @@
 	  
 <?php
 
-session_start();
 if (isset($_POST['user'])){
 	include("config.php");
-	$db = mysqli_connect(config::DB_SERVER, config::DB_USERNAME, config::DB_PASSWORD, config::DB_NAME);
+	
 	$email = $_POST['user'];
 	$pass = $_POST['password'];
 	$query = "SELECT * FROM vartotojas
