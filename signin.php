@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<?php
+session_start();
+include "config.php";
+?>
 <html>
 <head>
 	<title>Registruotis</title>
@@ -71,8 +75,7 @@
 <?php
 
 if (isset($_POST['user'])) {
-	include("config.php");
-	$db = mysqli_connect(config::DB_SERVER, config::DB_USERNAME, config::DB_PASSWORD, config::DB_NAME);
+	
 	$query = "INSERT INTO vartotojas (vardas, pavarde, email, slaptazodis, likutis, blokuotas)
 			  VALUES('" . $_POST['name'] . "','" . $_POST['surname'] . "','" . $_POST['user'] . "','" . $_POST['password'] . "','0.0','0')";
 	if(mysqli_query($db, $query)){
