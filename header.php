@@ -1,7 +1,6 @@
 <?php 
 include("config.php");
 session_start();
-$db = mysqli_connect(config::DB_SERVER, config::DB_USERNAME, config::DB_PASSWORD, config::DB_NAME);
 
 if (isset($_SESSION['userid'])){
     $query = "SELECT * FROM vartotojas WHERE id_Vartotojas=" . $_SESSION['userid'];
