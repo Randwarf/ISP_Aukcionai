@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 09, 2022 at 02:29 PM
+-- Generation Time: Dec 10, 2022 at 01:52 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -33,15 +33,16 @@ CREATE TABLE `administratorius` (
   `pavarde` varchar(32) NOT NULL,
   `email` varchar(64) NOT NULL,
   `telefono_nr` varchar(20) NOT NULL,
-  `id_Administratorius` int(11) NOT NULL
+  `id_Administratorius` int(11) NOT NULL,
+  `slaptazodis` varchar(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `administratorius`
 --
 
-INSERT INTO `administratorius` (`darbuotojo_ak`, `vardas`, `pavarde`, `email`, `telefono_nr`, `id_Administratorius`) VALUES
-('37001011111', 'Vardaitis', 'Pavardaitis', 'varpav@ktu.lt', '+37061111111', 1);
+INSERT INTO `administratorius` (`darbuotojo_ak`, `vardas`, `pavarde`, `email`, `telefono_nr`, `id_Administratorius`, `slaptazodis`) VALUES
+('37001011111', 'Vardaitis', 'Pavardaitis', 'varpav@ktu.lt', '+37061111111', 1, 'ABC123');
 
 -- --------------------------------------------------------
 
@@ -75,12 +76,12 @@ INSERT INTO `adresas` (`gatve`, `namo_nr`, `pasto_kodas`, `buto_nr`, `id_Adresas
 CREATE TABLE `aukcionas` (
   `pradzia` datetime NOT NULL,
   `pabaiga` datetime NOT NULL,
-  `min` float NOT NULL,
-  `max` float NOT NULL,
+  `min` float DEFAULT NULL,
+  `max` float DEFAULT NULL,
   `galutine_kaina` float DEFAULT NULL,
   `statusas` int(11) NOT NULL,
   `id_Aukcionas` int(11) NOT NULL,
-  `fk_Administratoriusid_Administratorius` int(11) NOT NULL,
+  `fk_Administratoriusid_Administratorius` int(11) DEFAULT NULL,
   `fk_Vartotojasid_Vartotojas` int(11) DEFAULT NULL,
   `fk_Prekeid_Preke` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -90,8 +91,9 @@ CREATE TABLE `aukcionas` (
 --
 
 INSERT INTO `aukcionas` (`pradzia`, `pabaiga`, `min`, `max`, `galutine_kaina`, `statusas`, `id_Aukcionas`, `fk_Administratoriusid_Administratorius`, `fk_Vartotojasid_Vartotojas`, `fk_Prekeid_Preke`) VALUES
-('2022-12-09 12:47:56', '2022-12-24 13:47:57', 10, 500, NULL, 1, 1, 1, NULL, 1),
-('2022-12-09 14:18:00', '2022-12-09 14:18:00', 1000, 5000, NULL, 1, 3, 1, NULL, 3);
+('2022-12-09 12:47:56', '2022-12-24 13:47:57', 10, 500, NULL, 4, 1, 1, NULL, 1),
+('2022-12-09 14:18:00', '2022-12-09 14:18:00', 1000, 5000, NULL, 4, 3, 1, NULL, 3),
+('2022-12-10 13:36:50', '2022-12-10 13:36:50', NULL, NULL, NULL, 3, 5, NULL, NULL, 2);
 
 -- --------------------------------------------------------
 
@@ -176,7 +178,9 @@ CREATE TABLE `komentaras` (
 --
 
 INSERT INTO `komentaras` (`tekstas`, `laiko_zyme`, `id_Komentaras`, `fk_Aukcionasid_Aukcionas`, `fk_Vartotojasid_Vartotojas`) VALUES
-('Aš dirbdamas iš namų į dieną uždirbu net 5000€!! Ar ir tu norėtum tiek uždirbti? Spausk -->> <a href=\"http://localhost/ISP_Aukcionai/PagrindinisPuslapis.php\" ČIA> <<--', '2022-12-09 14:09:16', 1, 1, 2);
+('Aš dirbdamas iš namų į dieną uždirbu net 5000€!! Ar ir tu norėtum tiek uždirbti? Spausk -->> <a href=\"http://localhost/ISP_Aukcionai/PagrindinisPuslapis.php\"> ČIA </a> <<--', '2022-12-09 14:09:16', 1, 1, 2),
+('Sveiki, testuoju komentarų sistemą.', '2022-12-10 00:30:08', 225, 1, 3),
+('skelbiu komentara kaip prisijunges vartotojas', '2022-12-10 13:34:53', 230, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -327,7 +331,8 @@ CREATE TABLE `statusas` (
 INSERT INTO `statusas` (`id_STATUSAS`, `name`) VALUES
 (1, 'patvirtintas'),
 (2, 'blokuotas'),
-(3, 'nepatvirtintas');
+(3, 'nepatvirtintas'),
+(4, 'Inicijuotas');
 
 -- --------------------------------------------------------
 
@@ -392,7 +397,10 @@ CREATE TABLE `vartotojas` (
 
 INSERT INTO `vartotojas` (`vardas`, `pavarde`, `email`, `telefono_nr`, `slaptazodis`, `likutis`, `blokuotas`, `lytis`, `id_Vartotojas`) VALUES
 ('Matas', 'Vaitkevičius', 'matvai2@ktu.lt', '+37061719386', 'ABC123', '68.59', 0, 1, 1),
-('Spamas', 'Spamaitis', 'spam@ktu.lt', NULL, 'ABC123', '0.00', 1, 1, 2);
+('Spamas', 'Spamaitis', 'spam@ktu.lt', NULL, 'ABC123', '0.00', 1, 1, 2),
+('TESTAS', 'TESTUOTOJAS', 'test@ktu.lt', NULL, 'ABC123', '0.00', 0, 3, 3),
+('', '', '', NULL, '', '0.00', 0, NULL, 4),
+('Matas', 'Vait', 'matas.vaitkevicius@gmail.com', NULL, 'ABC', '0.00', 0, NULL, 5);
 
 -- --------------------------------------------------------
 
@@ -566,7 +574,7 @@ ALTER TABLE `adresas`
 -- AUTO_INCREMENT for table `aukcionas`
 --
 ALTER TABLE `aukcionas`
-  MODIFY `id_Aukcionas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_Aukcionas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `blokuotas_vartotojas`
@@ -578,7 +586,7 @@ ALTER TABLE `blokuotas_vartotojas`
 -- AUTO_INCREMENT for table `komentaras`
 --
 ALTER TABLE `komentaras`
-  MODIFY `id_Komentaras` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_Komentaras` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=232;
 
 --
 -- AUTO_INCREMENT for table `kortele`
@@ -626,7 +634,7 @@ ALTER TABLE `transakcija`
 -- AUTO_INCREMENT for table `vartotojas`
 --
 ALTER TABLE `vartotojas`
-  MODIFY `id_Vartotojas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_Vartotojas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `zinute`

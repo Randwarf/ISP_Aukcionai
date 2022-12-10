@@ -38,7 +38,7 @@
 					INNER JOIN aukcionas ON preke.id_Preke=aukcionas.fk_Prekeid_Preke
 					LEFT JOIN nuotrauka ON preke.id_Preke=nuotrauka.fk_Prekeid_Preke
 					WHERE preke.kategorija=" . $kategorija . "
-					AND aukcionas.statusas=1";
+					AND aukcionas.statusas=4";
 
             $result = mysqli_query($db, $query);
 			if (mysqli_num_rows($result) <= 0){
