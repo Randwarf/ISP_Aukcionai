@@ -139,8 +139,8 @@
               <!-- Komentaro paskelbimas-->
               <form method="post" action="skelbti_komentara.php?id=<?php echo $id;?>">
                 <br>
-                <input name="comment" id="comment" type="text" placeholder="Įveskite savo komentarą" class="form-control">
-                <input type="submit" value="Paskelbti komentarą" class="form-control">
+                <input <?php if(!isset($_SESSION['userid'])){echo "type='hidden'";}?> name="comment" id="comment" type="text" placeholder="Įveskite savo komentarą" class="form-control">
+                <input <?php if(!isset($_SESSION['userid'])){echo "type='hidden'";}?> type="submit" value="Paskelbti komentarą" class="form-control">
               </form>
 
               <?php
