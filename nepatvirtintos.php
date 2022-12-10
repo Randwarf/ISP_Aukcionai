@@ -23,46 +23,24 @@
                 </tr>
             </thead>    
             <tbody>
-                <tr>
-                    <td><a href="Prekes_langas.php">Supelyjusi duonos riekelė</a></td>
-                    <td>Negaliu švaistyti maisto laisva ranka...</td>
-                    <th>Petras</th>
-                </tr>
-                <tr>
-                    <td><a href="Prekes_langas.php">Antikvarinis laikrodis(be rodyklių)</a></td>
-                    <td>Trūksta ant alaus, pro-pro-prosenelio turtas</td>
-                    <th>Marijonas</th>
-                </tr>
-                <tr>
-                    <td><a href="Prekes_langas.php">Supelyjusi duonos riekelė</a></td>
-                    <td>Negaliu švaistyti maisto laisva ranka...</td>
-                    <th>Petras</th>
-                </tr>
-                <tr>
-                    <td><a href="Prekes_langas.php">Supelyjusi duonos riekelė</a></td>
-                    <td>Negaliu švaistyti maisto laisva ranka...</td>
-                    <th>Petras</th>
-                </tr>
-                <tr>
-                    <td><a href="Prekes_langas.php">Supelyjusi duonos riekelė</a></td>
-                    <td>Negaliu švaistyti maisto laisva ranka...</td>
-                    <th>Petras</th>
-                </tr>
-                <tr>
-                    <td><a href="Prekes_langas.php">Supelyjusi duonos riekelė</a></td>
-                    <td>Negaliu švaistyti maisto laisva ranka...</td>
-                    <th>Petras</th>
-                </tr>
-                <tr>
-                    <td><a href="Prekes_langas.php">Supelyjusi duonos riekelė</a></td>
-                    <td>Negaliu švaistyti maisto laisva ranka...</td>
-                    <th>Petras</th>
-                </tr>
-                <tr>
-                    <td><a href="Prekes_langas.php">Supelyjusi duonos riekelė</a></td>
-                    <td>Negaliu švaistyti maisto laisva ranka...</td>
-                    <th>Petras</th>
-                </tr>
+                <?php
+
+                $query = "SELECT * FROM aukcionas 
+                          INNER JOIN preke ON preke.id_Preke=aukcionas.fk_Prekeid_Preke
+                          INNER JOIN vartotojas ON preke.fk_Vartotojasid_Vartotojas=vartotojas.id_Vartotojas
+                          WHERE statusas=3";
+
+                $result = mysqli_query($db, $query);
+
+                foreach ($result as $row){
+                    echo "<tr>";
+                    echo "<td><a href='Prekes_langas.php?id=".$row['id_Preke']."'>".$row['pavadinimas']."</a></td>";
+                    echo "<td>". $row['aprasymas'] ."</td>";
+                    echo "<th>" . $row['vardas'] . " " . $row['pavarde'] . "</th>";
+                    echo "</tr>";
+                }
+                
+                ?>
             </tbody>
         </table>
     </body>
