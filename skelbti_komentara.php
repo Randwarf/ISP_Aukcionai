@@ -1,6 +1,6 @@
 <?php
 if (!isset($_GET['id']) || !isset($_POST['comment'])){
-    header("Location: http://localhost/ISP_Aukcionai/PagrindinisPuslapis.php");
+    header("Location: PagrindinisPuslapis.php");
     exit;
 }
 
@@ -14,5 +14,5 @@ $query = "INSERT INTO komentaras (tekstas, fk_Aukcionasid_Aukcionas, fk_Vartotoj
           VALUES ('" . $_POST['comment'] . "','" . $_GET['id'] . "','3')";
 mysqli_query($db, $query);
 
-header("Location: http://localhost/ISP_Aukcionai/Aukciono_langas.php?id=" . $id);
+header("Location: Aukciono_langas.php?id=" . $id);
 ?>

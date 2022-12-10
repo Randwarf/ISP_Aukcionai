@@ -126,7 +126,7 @@
                 <div style='font-weight: bolder;'>".$row['vardas']." ".$row['pavarde']."</div>
                 <div style='font-weight: lighter;'>".$row['tekstas']."</div>";
 
-                echo "<button onclick=\"window.location.href='http://localhost/ISP_Aukcionai/trinti_komentara.php?id=".$row['id_Komentaras']."&back=".$_GET['id']."';\" class='btna'>Delete</button>";
+                echo "<button onclick=\"window.location.href='trinti_komentara.php?id=".$row['id_Komentaras']."&back=".$_GET['id']."';\" class='btna'>Delete</button>";
                 echo "</div>";
               }
 
