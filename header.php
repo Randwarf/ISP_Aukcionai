@@ -5,8 +5,8 @@ $db = mysqli_connect(config::DB_SERVER, config::DB_USERNAME, config::DB_PASSWORD
 
 if (isset($_SESSION['userid'])){
     $query = "SELECT * FROM vartotojas WHERE id_Vartotojas=" . $_SESSION['userid'];
-    $result = mysqli_query($db, $query);
-    $result = mysqli_fetch_assoc($result);
+    $USERINFO = mysqli_query($db, $query);
+    $USERINFO = mysqli_fetch_assoc($USERINFO);
 }
 
 ?>
@@ -15,7 +15,7 @@ if (isset($_SESSION['userid'])){
     <div display: flex;
     justify-content: space-between;
     align="right">
-        <?php echo "Vartotojas: ".$result['vardas'] . " " . $result['pavarde'];?>
+        <?php echo "Vartotojas: ".$USERINFO['vardas'] . " " . $USERINFO['pavarde'];?>
         <a href="naudotojoPuslapis.php">Naudotojo puslapis</a>
         <a href="signin.php">Registracija</a>
         <a href="login.php">Prisijungimas</a>
