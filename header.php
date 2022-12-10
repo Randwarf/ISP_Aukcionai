@@ -15,7 +15,12 @@ if (isset($_SESSION['userid'])){
     <div display: flex;
     justify-content: space-between;
     align="right">
-        <?php echo "Vartotojas: ".$USERINFO['vardas'] . " " . $USERINFO['pavarde'];?>
+        <?php 
+        if (isset($USERINFO))
+        {
+            echo "Vartotojas: ".$USERINFO['vardas'] . " " . $USERINFO['pavarde'];
+        }
+        ?>
         <a href="naudotojoPuslapis.php">Naudotojo puslapis</a>
         <a href="signin.php">Registracija</a>
         <a href="login.php">Prisijungimas</a>
