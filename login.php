@@ -75,7 +75,6 @@ include "config.php";
 <?php
 
 if (isset($_POST['user'])){
-	include("config.php");
 	
 	$email = $_POST['user'];
 	$pass = $_POST['password'];
