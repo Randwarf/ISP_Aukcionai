@@ -68,17 +68,33 @@
 </style>
 </head>   
 	  
+<?php
+
+if (isset($_POST['user'])) {
+	include("config.php");
+	$db = mysqli_connect(config::DB_SERVER, config::DB_USERNAME, config::DB_PASSWORD, config::DB_NAME);
+	$query = "INSERT INTO vartotojas (vardas, pavarde, email, slaptazodis, likutis, blokuotas)
+			  VALUES('" . $_POST['name'] . "','" . $_POST['surname'] . "','" . $_POST['user'] . "','" . $_POST['password'] . "','0.0','0')";
+	if(mysqli_query($db, $query)){
+		header("Location: PagrindinisPuslapis.php");
+	}
+}
+
+?>
+
 <body>
 	<div class ="login-form">
 		
 		<h1>Registruotis</h1>
-		<form action="login.php" method="post">
+		<form method="post">
 			<p>El-pastas</p>
-			<input type="text" name="user" placeholder="El-pastas">
-			<p>Naudotojo vardas</p>
-			<input type="text" name="username" placeholder="Naudotojo vardas">
+			<input type="text" name="user" placeholder="El-pastas", required="required">
+			<p>Vardas</p>
+			<input type="text" name="name" placeholder="Vardas", required="required">
+			<p>Pavardė</p>
+			<input type="text" name="surname" placeholder="Pavardė", required="required">
 			<p>Slaptažodis</p>
-			<input type="password" name="password" placeholder="Slaptažodis">
+			<input type="password" name="password" placeholder="Slaptažodis", required="required">
 			
 			
 			<p>
