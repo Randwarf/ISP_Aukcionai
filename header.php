@@ -18,12 +18,14 @@ if (isset($_SESSION['userid'])){
         if (isset($USERINFO))
         {
             echo "Vartotojas: ".$USERINFO['vardas'] . " " . $USERINFO['pavarde'];
+            echo "<a href='naudotojoPuslapis.php'>Naudotojo puslapis</a>";
+            echo "<a href='logout.php'>Atsijungti</a>";
+        }
+        else{
+            echo "<a href='signin.php'>Registracija</a>";
+            echo "<a href='login.php'>Prisijungimas</a>";
         }
         ?>
-        <a href="naudotojoPuslapis.php">Naudotojo puslapis</a>
-        <a href="signin.php">Registracija</a>
-        <a href="login.php">Prisijungimas</a>
         <a href="adminPage.php">Administravimo langas</a>
-        <a href="logout.php">Atsijungti</a>
     </div>
 </div>

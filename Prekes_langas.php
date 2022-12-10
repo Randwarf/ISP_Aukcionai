@@ -30,7 +30,6 @@
                   <div class="col-4">
                     <!-- Foto-->
                   <div class="div-group">
-                    <label for="nuotrauka">Pasirinkta nuotrauka:</label>
                   </div>
                     <img style="max-width:100%; max-height:100%;"src="<?php echo $result['nuoroda'];?>" alt="Red dot" />
                   </div>

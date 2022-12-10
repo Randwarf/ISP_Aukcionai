@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Pagrindinis Puslapis</title>
+        <title>Naudotojo puslapis</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
@@ -56,6 +56,9 @@
                     </form>
                     <form action="stebimi.php">
                         <button class="button">Stebimi aukcionai</button>
+                    </form>
+                    <form action="manoPrekes.php">
+                        <button class="button">Mano prekes</button>
                     </form>
                 </div>
                 <div class="col-9">
