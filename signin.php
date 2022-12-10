@@ -87,7 +87,7 @@
 		</form>
 		
 		<div class="container text-center">
-			<p><a href = "pagrindinis.php"> Į pagrindinį puslapį?</a></p>
+			<p><a href = "PagrindinisPuslapis.php"> Į pagrindinį puslapį?</a></p>
 		</div>
 		
 	</div>

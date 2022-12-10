@@ -68,12 +68,34 @@
 </style>
 </head>   
 	  
+<?php
+
+session_start();
+if (isset($_POST['user'])){
+	include("config.php");
+	$db = mysqli_connect(config::DB_SERVER, config::DB_USERNAME, config::DB_PASSWORD, config::DB_NAME);
+	$email = $_POST['user'];
+	$pass = $_POST['password'];
+	$query = "SELECT * FROM vartotojas
+			  WHERE email='".$email."' 
+			  AND slaptazodis='".$pass."'";
+
+	$result = mysqli_query($db, $query);
+	if (mysqli_num_rows($result)==1){
+		$row = mysqli_fetch_assoc($result);
+		$_SESSION['userid'] = $row['id_Vartotojas'];
+		header("Location: PagrindinisPuslapis.php");
+	}
+}
+
+?>
+
 <body>
 	<div class ="login-form">
 		<h1>Prisijungti</h1>
 		<form action="#" method="post">
-			<p>El-pastas ar naudotojo vardas</p>
-			<input type="text" name="user" placeholder="El-pastas ar naudotojo vardas">
+			<p>El-paštas</p>
+			<input type="text" name="user" placeholder="El-pastas">
 			<p>Slaptažodis</p>
 			<input type="password" name="password" placeholder="Slaptažodis">
 			
