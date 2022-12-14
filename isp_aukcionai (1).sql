@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 14, 2022 at 09:27 AM
+-- Generation Time: Dec 14, 2022 at 08:00 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -93,7 +93,9 @@ CREATE TABLE `aukcionas` (
 INSERT INTO `aukcionas` (`pradzia`, `pabaiga`, `min`, `max`, `galutine_kaina`, `statusas`, `id_Aukcionas`, `fk_Administratoriusid_Administratorius`, `fk_Vartotojasid_Vartotojas`, `fk_Prekeid_Preke`) VALUES
 ('2022-12-09 12:47:56', '2022-12-24 13:47:57', 10, 500, NULL, 4, 1, 1, NULL, 1),
 ('2022-12-09 14:18:00', '2022-12-09 14:18:00', 1000, 5000, NULL, 4, 3, 1, NULL, 3),
-('2022-12-10 13:36:50', '2022-12-10 13:36:50', NULL, NULL, NULL, 3, 5, NULL, NULL, 2);
+('2022-12-10 13:36:50', '2022-12-10 13:36:50', NULL, NULL, NULL, 1, 5, NULL, NULL, 2),
+('2022-12-14 19:21:45', '2022-12-14 19:21:45', 10, 100, NULL, 4, 6, 1, NULL, 4),
+('2022-12-14 19:57:02', '2022-12-14 19:57:02', 50, 500, NULL, 4, 7, 1, NULL, 5);
 
 -- --------------------------------------------------------
 
@@ -114,7 +116,9 @@ CREATE TABLE `blokuotas_vartotojas` (
 --
 
 INSERT INTO `blokuotas_vartotojas` (`laiko_zyme`, `komentaras`, `id_Blokuotas_vartotojas`, `fk_Administratoriusid_Administratorius`, `fk_Vartotojasid_Vartotojas`) VALUES
-('2022-12-09 14:07:25', 'Spamas', 1, 1, 2);
+('2022-12-09 14:07:25', 'Spamas', 1, 1, 2),
+('2022-12-14 13:17:46', ' Spamuoja', 2, 1, 2),
+('2022-12-14 15:18:28', ' Blokuoju', 3, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -180,7 +184,12 @@ CREATE TABLE `komentaras` (
 INSERT INTO `komentaras` (`tekstas`, `laiko_zyme`, `id_Komentaras`, `fk_Aukcionasid_Aukcionas`, `fk_Vartotojasid_Vartotojas`) VALUES
 ('Aš dirbdamas iš namų į dieną uždirbu net 5000€!! Ar ir tu norėtum tiek uždirbti? Spausk -->> <a href=\"http://localhost/ISP_Aukcionai/PagrindinisPuslapis.php\"> ČIA </a> <<--', '2022-12-09 14:09:16', 1, 1, 2),
 ('Sveiki, testuoju komentarų sistemą.', '2022-12-10 00:30:08', 225, 1, 3),
-('skelbiu komentara kaip prisijunges vartotojas', '2022-12-10 13:34:53', 230, 1, 2);
+('skelbiu komentara kaip prisijunges vartotojas', '2022-12-10 13:34:53', 230, 1, 2),
+('Naujas komentaras by admin', '2022-12-14 19:31:50', 232, 1, 5),
+('Dar vienas komentaras po truputį vėliau', '2022-12-14 19:33:53', 233, 1, 5),
+('dar vienas komentaras, kad bučiau labiausiai aktyvus', '2022-12-14 19:56:21', 234, 1, 5),
+('Ar buvote iškviete egzorcistą? bijau vaiduoklių.........', '2022-12-14 20:23:43', 235, 6, 3),
+('Net nesijaudinkite, čia nieko nėra', '2022-12-14 20:27:07', 236, 6, 5);
 
 -- --------------------------------------------------------
 
@@ -268,7 +277,9 @@ CREATE TABLE `nuotrauka` (
 INSERT INTO `nuotrauka` (`pavadinimas`, `nuoroda`, `formatas`, `id_Nuotrauka`, `fk_Prekeid_Preke`) VALUES
 ('laikrodis', 'foto/laikrodis.jpg', 2, 1, 1),
 ('corolla verso', 'foto/TOYOTA-Corolla-Verso-647_20.jpg', 2, 2, 3),
-('zaislas', 'foto/zaislas.jpg', 2, 3, 2);
+('zaislas', 'foto/zaislas.jpg', 2, 3, 2),
+('laikrodis', 'foto/laikrodis2.jpg', 2, 4, 4),
+('saldainiai', 'foto/saldainiai.jpg', 2, 5, 5);
 
 -- --------------------------------------------------------
 
@@ -292,7 +303,9 @@ CREATE TABLE `preke` (
 INSERT INTO `preke` (`aprasymas`, `data`, `pavadinimas`, `kategorija`, `id_Preke`, `fk_Vartotojasid_Vartotojas`) VALUES
 ('Gražus antikvarinis laikrodis', '2022-12-09 13:42:36', 'Laikrodis', 2, 1, 1),
 ('Senovinis žaislas, XIXa., Anglija', '2022-12-09 13:42:47', 'Senovinis žaislas', 2, 2, 1),
-('Tvarkinga, 2003m, 305k km rida, tepalai tik ką pakeisti', '2022-12-09 15:16:06', 'Toyota Corolla Verso', 1, 3, 1);
+('Tvarkinga, 2003m, 305k km rida, tepalai tik ką pakeisti', '2022-12-09 15:16:06', 'Toyota Corolla Verso', 1, 3, 1),
+('Senovinis laikrodis, veikiantis. Vidurnakčiais skamba, trukdo miegoti, noriu greičiau atsikratyti', '2022-12-14 20:21:36', 'Senovinis laikrodis', 4, 4, 5),
+('Firminiai mėlinieji saldainiai iš Albukerkio, Naujosios Meksikos', '2022-12-14 20:56:56', 'Saldainiai', 6, 5, 3);
 
 -- --------------------------------------------------------
 
@@ -349,6 +362,16 @@ CREATE TABLE `statymas` (
   `fk_Aukcionasid_Aukcionas` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `statymas`
+--
+
+INSERT INTO `statymas` (`verte`, `laiko_zyme`, `id_Statymas`, `fk_Vartotojasid_Vartotojas`, `fk_Aukcionasid_Aukcionas`) VALUES
+('10.15', '2022-12-14 20:03:48', 1, 3, 1),
+('12.00', '2022-12-14 20:04:01', 2, 1, 1),
+('20.00', '2022-12-14 20:04:15', 3, 5, 1),
+('25.00', '2022-12-14 20:17:04', 4, 2, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -399,7 +422,7 @@ CREATE TABLE `vartotojas` (
 
 INSERT INTO `vartotojas` (`vardas`, `pavarde`, `email`, `telefono_nr`, `slaptazodis`, `likutis`, `blokuotas`, `lytis`, `id_Vartotojas`, `fk_Administratorius`) VALUES
 ('Matas', 'Vaitkevičius', 'matvai2@ktu.lt', '+37061719386', 'ABC123', '68.59', 0, 1, 1, NULL),
-('Spamas', 'Spamaitis', 'spam@ktu.lt', NULL, 'ABC123', '0.00', 1, 1, 2, NULL),
+('Spamas', 'Spamaitis', 'spam@ktu.lt', NULL, 'ABC123', '0.00', 0, 1, 2, NULL),
 ('TESTAS', 'TESTUOTOJAS', 'test@ktu.lt', NULL, 'ABC123', '0.00', 0, 3, 3, NULL),
 ('', '', '', NULL, '', '0.00', 0, NULL, 4, NULL),
 ('Matas', 'Vait', 'matas.vaitkevicius@gmail.com', NULL, 'ABC', '0.00', 0, NULL, 5, 1);
@@ -579,19 +602,19 @@ ALTER TABLE `adresas`
 -- AUTO_INCREMENT for table `aukcionas`
 --
 ALTER TABLE `aukcionas`
-  MODIFY `id_Aukcionas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_Aukcionas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `blokuotas_vartotojas`
 --
 ALTER TABLE `blokuotas_vartotojas`
-  MODIFY `id_Blokuotas_vartotojas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_Blokuotas_vartotojas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `komentaras`
 --
 ALTER TABLE `komentaras`
-  MODIFY `id_Komentaras` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=232;
+  MODIFY `id_Komentaras` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=237;
 
 --
 -- AUTO_INCREMENT for table `kortele`
@@ -609,13 +632,13 @@ ALTER TABLE `miestas`
 -- AUTO_INCREMENT for table `nuotrauka`
 --
 ALTER TABLE `nuotrauka`
-  MODIFY `id_Nuotrauka` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_Nuotrauka` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `preke`
 --
 ALTER TABLE `preke`
-  MODIFY `id_Preke` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_Preke` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `salis`
@@ -627,7 +650,7 @@ ALTER TABLE `salis`
 -- AUTO_INCREMENT for table `statymas`
 --
 ALTER TABLE `statymas`
-  MODIFY `id_Statymas` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_Statymas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `transakcija`

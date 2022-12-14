@@ -48,10 +48,11 @@
 
     $query = "SELECT *, kategorija.name as name2
               FROM aukcionas
-              INNER JOIN preke ON preke.id_Preke=aukcionas.fk_Prekeid_Preke
-              INNER JOIN nuotrauka ON nuotrauka.fk_Prekeid_Preke=preke.id_Preke
-              INNER JOIN kategorija ON kategorija.id_KATEGORIJA=preke.kategorija
-              INNER JOIN statusas ON statusas.id_STATUSAS=aukcionas.statusas
+              LEFT JOIN preke ON preke.id_Preke=aukcionas.fk_Prekeid_Preke
+              LEFT JOIN nuotrauka ON nuotrauka.fk_Prekeid_Preke=preke.id_Preke
+              LEFT JOIN kategorija ON kategorija.id_KATEGORIJA=preke.kategorija
+              LEFT JOIN statusas ON statusas.id_STATUSAS=aukcionas.statusas
+              LEFT JOIN vartotojas ON preke.fk_Vartotojasid_Vartotojas=vartotojas.id_Vartotojas
               WHERE aukcionas.id_Aukcionas=".$id;
     $result = mysqli_query($db, $query);
     $result = mysqli_fetch_assoc($result);
@@ -65,6 +66,10 @@
                 </div>
                 <div class="col-8">
                   <!-- Data-->
+                  <div class="div-group">
+                    <label>Savininkas:</label>
+                    <label><?php echo "<a href='naudotojoPuslapis.php?id=".$result['id_Vartotojas']."'>".$result['vardas']." ".$result['pavarde']."</a>";?></label>
+                  </div>
                   <div class="div-group">
                     <label>Aukciono gyvavimo trukmė:</label>
                     <label style="font-weight: bold;"><?php echo $result['pradzia'];?></label>
@@ -108,7 +113,13 @@
                   <input style="margin-right:10px; margin-left:10px" type="button" class="btn btn-primary" value="Grįžti" onclick="history.back()">
                  </form>
                  <button style="margin-right:10px" class="btn"><i class="fa fa-star"></i></button>
-                 <button onclick="window.location.href='istrinti_aukciona.php?id=<?php echo $_GET['id'];?>'" class="btn"><i class="fa fa-trash"></i></button>
+                 <?php
+                 if (isset($USERINFO) && $USERINFO['fk_Administratorius'] != null) {
+                  echo "<button style='margin-right:10px' onclick=\"window.location.href='prasytiAtaskaitos.php?id=" . $_GET['id'] . "'\" class ='btn'><i class='fa fa-line-chart'></i></button>";
+                  $location = "window.location.href='istrinti_aukciona.php?id=" . $_GET['id']."'";
+                  echo "<button style='margin-right:10px' onclick=\"".$location."\" class='btn'><i class='fa fa-trash'></i></button>";
+                }
+                 ?>
               </div>
               
             </div>
