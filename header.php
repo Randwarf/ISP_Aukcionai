@@ -17,7 +17,13 @@ if (isset($_SESSION['userid'])){
         <?php 
         if (isset($USERINFO))
         {
-            echo "Vartotojas: ".$USERINFO['vardas'] . " " . $USERINFO['pavarde'];
+            if($USERINFO['fk_Administratorius'] != null){
+                echo "Administratorius: ".$USERINFO['vardas'] . " " . $USERINFO['pavarde'];
+                echo "<a href='adminPage.php'>Administravimo langas</a>";
+            }
+            else{
+                echo "Vartotojas: ".$USERINFO['vardas'] . " " . $USERINFO['pavarde'];
+            }
             echo "<a href='naudotojoPuslapis.php'>Naudotojo puslapis</a>";
             echo "<a href='logout.php'>Atsijungti</a>";
         }
@@ -26,6 +32,5 @@ if (isset($_SESSION['userid'])){
             echo "<a href='login.php'>Prisijungimas</a>";
         }
         ?>
-        <a href="adminPage.php">Administravimo langas</a>
     </div>
 </div>

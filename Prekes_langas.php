@@ -15,9 +15,9 @@
     
     include("header.php");
     $query= "SELECT *, preke.pavadinimas as ppavadinimas FROM preke
-             INNER JOIN nuotrauka ON preke.id_Preke=nuotrauka.fk_Prekeid_Preke
-             INNER JOIN kategorija ON preke.kategorija=kategorija.id_KATEGORIJA
-             INNER JOIN aukcionas ON preke.id_Preke=aukcionas.fk_Prekeid_Preke
+             LEFT JOIN nuotrauka ON preke.id_Preke=nuotrauka.fk_Prekeid_Preke
+             LEFT JOIN kategorija ON preke.kategorija=kategorija.id_KATEGORIJA
+             LEFT JOIN aukcionas ON preke.id_Preke=aukcionas.fk_Prekeid_Preke
              WHERE id_Preke=".$_GET['id'];
 
     $result = mysqli_query($db, $query);
