@@ -11,15 +11,24 @@
       </head>
 
     <body>
-    <?php include("header.php");?>
+    <?php 
+    include("header.php");
+    
+    $query = "SELECT * FROM vartotojas WHERE id_Vartotojas=" . $_GET['id'];
+    $result = mysqli_query($db, $query);
+    $CURRINFO = mysqli_fetch_assoc($result);
+    ?>
 
         <div style="margin:auto;max-width:800px">
             <a href="naudotojoPuslapis.php">ATGAL</a>
-            <form>
+            <form method='post' action='blokuoti.php'>
+                <input type='hidden' name='id' value=<?php echo $_GET['id'];?>></input>
                 <table class="table center">
                     <tr>
                         <td>Naudotojas:</td>
-                        <td>XYZ</td>
+                        <?php
+                            echo "<td>".$CURRINFO['vardas'] . " " . $CURRINFO['pavarde']."</td>";
+                        ?>
                     </tr>
                     <tr>
                         <td>Blokavimo priežastis</td>
@@ -29,7 +38,7 @@
                     </tr>
                     <tr>
                         <td></td>
-                        <td aling="right"><button type="submit" class="btn btn-danger">BLOKUOTI</button></td>
+                        <td align="right"><button type="submit" class="btn btn-danger">BLOKUOTI</button></td>
                     </tr>
                 </table>
             </form>

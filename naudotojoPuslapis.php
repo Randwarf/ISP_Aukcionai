@@ -33,8 +33,21 @@
       </head>
 
     <body>
-    <?php include("header.php");?>
-        <h2 style="background-color: #2b2d33;color:white;  padding:10px">Naudotojo puslapis</h2>
+    <?php 
+    include("header.php");
+    if (isset($_GET['id']) && $_GET['id']!=$_SESSION['userid']){
+        $query = "SELECT * FROM vartotojas WHERE id_Vartotojas=" . $_GET['id'];
+        $result = mysqli_query($db, $query);
+        $CURRINFO = mysqli_fetch_assoc($result);
+    }
+    else{
+        $CURRINFO = $USERINFO;
+    }
+    
+    ?>
+
+    
+        <h2 style="background-color: #2b2d33;color:white;  padding:10px">Naudotojo <?php echo " ".$CURRINFO['vardas']." ".$CURRINFO['pavarde']." "?> puslapis</h2>
 
         <div class="container-fluid">
             <div class="row justify-content-start">
@@ -51,9 +64,19 @@
                     <form action="Mokejimo_duomenu_redagavimo_puslapis.php">
                         <button class="button">Redaguoti mokėjimo duomenis</button>
                     </form>
-                    <form action="blokavimoPuslapis.php">
-                        <button class="button">Blokavimo puslapis</button>
-                    </form>
+
+                    <?php
+                    
+                    if (isset($USERINFO) && $USERINFO['fk_Administratorius'] != null){
+                        $pav = "blokavimoPuslapis.php";
+                        echo $pav;
+                        echo "<form method='get' action='" . $pav . "'>
+                        <input type='hidden'name='id' value=".$_GET['id']."></input>
+                        <button class='btn btn-danger'>Blokuoti</button>
+                    </form>";
+                    }
+
+                    ?>
                     <form action="stebimi.php">
                         <button class="button">Stebimi aukcionai</button>
                     </form>

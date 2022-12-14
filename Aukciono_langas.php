@@ -124,7 +124,7 @@
 
               foreach ($result as $row){
                 echo "<div class='div-group'>
-                <div style='font-weight: bolder;'>".$row['vardas']." ".$row['pavarde']."</div>
+                <div style='font-weight: bolder;'><a href='naudotojoPuslapis.php?id=".$row['id_Vartotojas']."'>".$row['vardas']." ".$row['pavarde']."</a></div>
                 <div style='font-weight: lighter;'>".$row['tekstas']."</div>";
 
                 if (isset($USERINFO) && $USERINFO['fk_Administratorius'] != null){
