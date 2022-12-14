@@ -60,14 +60,19 @@
               <form>
                 <input type="button" class="btn btn-primary" value="Grįžti" onclick="history.back()">
                </form>
-  
-               <form>
-                <input type="button" class="btn btn-primary" value="Patvirtinti" onclick="window.location.href='patvirtinti.php?id=<?php echo $_GET['id'];?>'">
-               </form>
-  
-               <form>
-                <input type="button" class="btn btn-primary" value="Atmesti" onclick="window.location.href='atmesti.php?id=<?php echo $_GET['id'];?>'">
-               </form>
+                <?php
+                
+                if (isset($USERINFO) && $USERINFO['fk_Administratorius']!= null){
+                  echo "<form>
+                  <input type='button' class='btn btn-primary' value='Patvirtinti' onclick='window.location.href='patvirtinti.php?id=".$_GET['id']."''>
+                 </form>
+    
+                 <form>
+                  <input type='button' class='btn btn-primary' value='Atmesti' onclick='window.location.href='atmesti.php?id=".$_GET['id']."''>
+                 </form>";
+                }
+
+                ?>
 
                <?php
                if ($result['statusas']==1){
