@@ -64,19 +64,6 @@
                     <form action="Mokejimo_duomenu_redagavimo_puslapis.php">
                         <button class="button">Redaguoti mokėjimo duomenis</button>
                     </form>
-
-                    <?php
-                    
-                    if (isset($USERINFO) && $USERINFO['fk_Administratorius'] != null){
-                        $pav = "blokavimoPuslapis.php";
-                        echo $pav;
-                        echo "<form method='get' action='" . $pav . "'>
-                        <input type='hidden'name='id' value=".$_GET['id']."></input>
-                        <button class='btn btn-danger'>Blokuoti</button>
-                    </form>";
-                    }
-
-                    ?>
                     <form action="stebimi.php">
                         <button class="button">Stebimi aukcionai</button>
                     </form>
@@ -84,8 +71,19 @@
                         <button class="button">Mano prekes</button>
                     </form>
                 </div>
-                <div class="col-9">
-                    <!--future php goes here-->
+                <div class="col-6"></div>
+                <div class="col-3">
+                <?php
+                    
+                    if (isset($USERINFO) && $USERINFO['fk_Administratorius'] != null){
+                        $pav = "blokavimoPuslapis.php";
+                        echo "<form method='get' action='" . $pav . "'>
+                        <input type='hidden'name='id' value=".$CURRINFO['id_Vartotojas']."></input>
+                        <button class='button' style='border-color: #ff0000'>Blokuoti</button>
+                    </form>";
+                    }
+
+                    ?>
                 </div>
             </div>
         </div>

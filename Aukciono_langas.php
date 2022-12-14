@@ -118,6 +118,7 @@
               $query = "SELECT * FROM komentaras
                         INNER JOIN vartotojas ON komentaras.fk_Vartotojasid_Vartotojas=vartotojas.id_Vartotojas
                         WHERE fk_Aukcionasid_Aukcionas=" . $id."
+                        AND vartotojas.blokuotas=0
                         ORDER BY laiko_zyme desc";
 
               $result = mysqli_query($db, $query);
