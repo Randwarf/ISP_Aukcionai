@@ -65,11 +65,12 @@
                     <img style="max-width:100%; max-height:100%;"src=<?php echo "'".$result['nuoroda']."'";?> alt="Blue toy">
                 </div>
                 <div class="col-8">
-                  <!-- Data-->
+                  <!-- Savininkas-->
                   <div class="div-group">
                     <label>Savininkas:</label>
                     <label><?php echo "<a href='naudotojoPuslapis.php?id=".$result['id_Vartotojas']."'>".$result['vardas']." ".$result['pavarde']."</a>";?></label>
                   </div>
+                  <!-- Data-->
                   <div class="div-group">
                     <label>Aukciono gyvavimo trukmė:</label>
                     <label style="font-weight: bold;"><?php echo $result['pradzia'];?></label>
@@ -95,8 +96,37 @@
                   </div>
                   <!-- Statusas-->
                   <div class="div-group">
-                    <label for="nuotrauka">Aukciono būsena:</label>
-                    <label for="nuotrauka"><?php echo $result['name'];?></label>
+                    <label for="status">Aukciono būsena:</label>
+                    <label for="status"><?php echo $result['name'];?></label>
+                  </div>
+                  <!-- Dabartinis Statymas-->
+                  <div class="div-group">
+                    <?php
+                    $query = "SELECT * FROM statymas 
+                     INNER JOIN vartotojas ON vartotojas.id_Vartotojas=statymas.fk_Vartotojasid_Vartotojas
+                     WHERE fk_Aukcionasid_Aukcionas='" . $id . "' ORDER BY verte desc LIMIT 1";
+                    $statymas = mysqli_query($db, $query);
+                    $statymas = mysqli_fetch_assoc($statymas);
+                    ?>
+                    <label for="kaina">Dabartinė kaina:</label>
+                    <label for="kaina"><?php 
+                    if (isset($statymas)){
+                      echo $statymas['verte'];  
+                    }
+                    else{
+                      echo "-";
+                    }
+                    ?>€</label><br>
+
+                    <?php
+                    
+                    if ($_SESSION['userid']==$result['id_Vartotojas'] && isset($statymas)){
+                      //jei žiūri savininkas
+                      echo "<label>Pirkėjas:</label>";
+                      echo "<label>".$statymas['vardas']." ".$statymas['pavarde']."</label>";
+                    }
+                    
+                    ?>
                   </div>
                   <!-- Min/Max-->
                   <form>
