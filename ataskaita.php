@@ -8,34 +8,50 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+        <style>
+          .center {
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+}
+          </style>
 </head>
 
 <body>
     <?php 
-    include('header.php');
+    include('header.php');?>
+    <div class='center'>
+    <?php
     if (isset($_POST)){
-      echo "<a href='Aukciono_langas.php?id=" . $_POST['id'] . "'>Atgal</a> <br>";
+      echo "<a href='Aukciono_langas.php?id=" . $_POST['id'] . "'>Atgal</a> <hr>";
       
       if(isset($_POST['vidurkis'])){
         $query = "SELECT AVG(verte) as average FROM statymas WHERE fk_Aukcionasid_Aukcionas=" . $_POST['id']." GROUP BY fk_Aukcionasid_Aukcionas";
         $average = mysqli_query($db, $query);
         $average = mysqli_fetch_assoc($average);
         if (isset($average)){
-          echo "Statymų vidurkis: " . $average['average']."€<br>";
+          echo "Statymų vidurkis: " . $average['average']."€";
         }
         else{
-          echo "Statymų vidurkis neegzistuoja: dar nebuvo statymų <br>";
+          echo "Statymų vidurkis neegzistuoja: dar nebuvo statymų";
         }
       }
 
       if(isset($_POST['statymai'])){
+        echo "<hr>";
+
         echo "Statymai: <br>";
         echo '<div id="statymai" style="width:100%; max-width:600px; height:500px;"></div>';
       }
       
       if(isset($_POST['komentarai'])){
+        echo "<hr>";
+
         echo "Komentarai: <br>";
         echo '<div id="myChart" style="width:100%; max-width:600px; height:500px;"></div>';
+        echo "<hr>";
+
       }
 
       if(isset($_POST['aktyviausias'])){
@@ -60,6 +76,8 @@
       }
     }
     ?>
+
+  </div>
 <script>
 google.charts.load('current',{packages:['corechart']});
 google.charts.setOnLoadCallback(drawChart);
