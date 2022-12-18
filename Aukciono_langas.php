@@ -145,9 +145,19 @@
                  </form>
                  
                  <?php 
-                 if(isset($_SESSION['userid'])){
-                  $locationsteb = "window.location.href='prideti_stebima.php?id=" . $_GET['id']."'";
-                  echo "<button style='margin-right:10px' onclick=\"".$locationsteb."\" class='btn'><i class='fa fa-star'></i></button>";
+                $query = "SELECT * FROM stebi WHERE fk_Aukcionasid_Aukcionas='" . $id . "' AND fk_Vartotojasid_Vartotojas='".$_SESSION['userid']."'";
+                $stebimi = mysqli_query($db, $query);
+                if (mysqli_num_rows($stebimi) < 1){
+                  if(isset($_SESSION['userid'])){
+                    $locationsteb = "window.location.href='prideti_stebima.php?id=" . $_GET['id']."'";
+                    echo "<button style='margin-right:10px' onclick=\"".$locationsteb."\" class='btn'><i class='fa fa-star-o'></i></button>";
+                  }
+                }
+                else{
+                  if(isset($_SESSION['userid'])){
+                    $locationsteb = "window.location.href='prideti_stebima.php?id=" . $_GET['id']."'";
+                    echo "<button style='margin-right:10px' onclick=\"".$locationsteb."\" class='btn'><i class='fa fa-star'></i></button>";
+                  }
                 }
                  ?> 
                 
