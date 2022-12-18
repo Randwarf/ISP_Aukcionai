@@ -62,7 +62,10 @@
                         <button class="button">Atsiskaitymai</button>
                     </form>
                     <form action="Mokejimo_duomenu_redagavimo_puslapis.php">
-                        <button class="button">Redaguoti mokėjimo duomenis</button>
+                        <button class="button">Mokėjimo duomenys</button>
+                    </form>
+                    <form action="Pinigines_papildymas.php">
+                        <button class="button">Įsidėti pinigėlių</button>
                     </form>
                     <form action="stebimi.php">
                         <button class="button">Stebimi aukcionai</button>

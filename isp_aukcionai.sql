@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 18, 2022 at 02:05 PM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.1.12
+-- Generation Time: Dec 18, 2022 at 10:36 PM
+-- Server version: 10.4.25-MariaDB
+-- PHP Version: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -35,7 +35,7 @@ CREATE TABLE `administratorius` (
   `telefono_nr` varchar(20) NOT NULL,
   `id_Administratorius` int(11) NOT NULL,
   `slaptazodis` varchar(32) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `administratorius`
@@ -51,6 +51,7 @@ INSERT INTO `administratorius` (`darbuotojo_ak`, `vardas`, `pavarde`, `email`, `
 --
 
 CREATE TABLE `adresas` (
+  `salis` varchar(30) NOT NULL,
   `gatve` varchar(32) NOT NULL,
   `namo_nr` varchar(6) NOT NULL,
   `pasto_kodas` varchar(6) NOT NULL,
@@ -58,14 +59,14 @@ CREATE TABLE `adresas` (
   `id_Adresas` int(11) NOT NULL,
   `fk_Miestasid_Miestas` int(11) NOT NULL,
   `fk_Vartotojasid_Vartotojas` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `adresas`
 --
 
-INSERT INTO `adresas` (`gatve`, `namo_nr`, `pasto_kodas`, `buto_nr`, `id_Adresas`, `fk_Miestasid_Miestas`, `fk_Vartotojasid_Vartotojas`) VALUES
-('Tylos', '16', '38122', '', 1, 22, 1);
+INSERT INTO `adresas` (`salis`, `gatve`, `namo_nr`, `pasto_kodas`, `buto_nr`, `id_Adresas`, `fk_Miestasid_Miestas`, `fk_Vartotojasid_Vartotojas`) VALUES
+('LT', 'Dubingiai', '4', '45682', '2', 1, 22, 1);
 
 -- --------------------------------------------------------
 
@@ -84,15 +85,15 @@ CREATE TABLE `aukcionas` (
   `fk_Administratoriusid_Administratorius` int(11) DEFAULT NULL,
   `fk_Vartotojasid_Vartotojas` int(11) DEFAULT NULL,
   `fk_Prekeid_Preke` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `aukcionas`
 --
 
 INSERT INTO `aukcionas` (`pradzia`, `pabaiga`, `min`, `max`, `galutine_kaina`, `statusas`, `id_Aukcionas`, `fk_Administratoriusid_Administratorius`, `fk_Vartotojasid_Vartotojas`, `fk_Prekeid_Preke`) VALUES
-('2022-12-09 12:47:56', '2022-12-24 13:47:57', 10, 500, NULL, 4, 1, 1, NULL, 1),
-('2022-12-09 14:18:00', '2022-12-09 14:18:00', 1000, 5000, NULL, 4, 3, 1, NULL, 3),
+('2022-12-09 12:47:56', '2022-12-24 13:47:57', 10, 500, NULL, 4, 1, 1, 1, 1),
+('2022-12-09 14:18:00', '2022-12-09 14:18:00', 1000, 5000, 5000, 4, 3, 1, 1, 3),
 ('2022-12-10 13:36:50', '2022-12-10 13:36:50', NULL, NULL, NULL, 1, 5, NULL, NULL, 2),
 ('2022-12-14 19:21:45', '2022-12-14 19:21:45', 10, 100, NULL, 4, 6, 1, NULL, 4),
 ('2022-12-14 19:57:02', '2022-12-14 19:57:02', 50, 500, NULL, 4, 7, 1, NULL, 5);
@@ -109,7 +110,7 @@ CREATE TABLE `blokuotas_vartotojas` (
   `id_Blokuotas_vartotojas` int(11) NOT NULL,
   `fk_Administratoriusid_Administratorius` int(11) NOT NULL,
   `fk_Vartotojasid_Vartotojas` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `blokuotas_vartotojas`
@@ -129,7 +130,7 @@ INSERT INTO `blokuotas_vartotojas` (`laiko_zyme`, `komentaras`, `id_Blokuotas_va
 CREATE TABLE `formatas` (
   `id_FORMATAS` int(11) NOT NULL,
   `name` varchar(5) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `formatas`
@@ -149,7 +150,7 @@ INSERT INTO `formatas` (`id_FORMATAS`, `name`) VALUES
 CREATE TABLE `kategorija` (
   `id_KATEGORIJA` int(11) NOT NULL,
   `name` varchar(12) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `kategorija`
@@ -175,7 +176,7 @@ CREATE TABLE `komentaras` (
   `id_Komentaras` int(11) NOT NULL,
   `fk_Aukcionasid_Aukcionas` int(11) NOT NULL,
   `fk_Vartotojasid_Vartotojas` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `komentaras`
@@ -191,7 +192,8 @@ INSERT INTO `komentaras` (`tekstas`, `laiko_zyme`, `id_Komentaras`, `fk_Aukciona
 ('Ar buvote iškviete egzorcistą? bijau vaiduoklių.........', '2022-12-14 20:23:43', 235, 6, 3),
 ('Net nesijaudinkite, čia nieko nėra', '2022-12-14 20:27:07', 236, 6, 5),
 ('', '2022-12-18 13:32:54', 238, 6, 5),
-('', '2022-12-18 13:32:59', 239, 6, 5);
+('', '2022-12-18 13:32:59', 239, 6, 5),
+('', '2022-12-18 20:37:09', 240, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -203,16 +205,17 @@ CREATE TABLE `kortele` (
   `korteles_nr` varchar(16) NOT NULL,
   `galiojimo_menuo` varchar(2) NOT NULL,
   `galiojimo_metai` varchar(2) NOT NULL,
+  `cvc` varchar(3) NOT NULL,
   `id_Kortele` int(11) NOT NULL,
   `fk_Vartotojasid_Vartotojas` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `kortele`
 --
 
-INSERT INTO `kortele` (`korteles_nr`, `galiojimo_menuo`, `galiojimo_metai`, `id_Kortele`, `fk_Vartotojasid_Vartotojas`) VALUES
-('111111111111', '01', '24', 1, 1);
+INSERT INTO `kortele` (`korteles_nr`, `galiojimo_menuo`, `galiojimo_metai`, `cvc`, `id_Kortele`, `fk_Vartotojasid_Vartotojas`) VALUES
+('2', '', '', '', 4, 1);
 
 -- --------------------------------------------------------
 
@@ -223,7 +226,7 @@ INSERT INTO `kortele` (`korteles_nr`, `galiojimo_menuo`, `galiojimo_metai`, `id_
 CREATE TABLE `lytis` (
   `id_LYTIS` int(11) NOT NULL,
   `name` varchar(7) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `lytis`
@@ -244,7 +247,7 @@ CREATE TABLE `miestas` (
   `Pavadinimas` varchar(64) NOT NULL,
   `id_Miestas` int(11) NOT NULL,
   `fk_Salisid_Salis` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `miestas`
@@ -270,7 +273,7 @@ CREATE TABLE `nuotrauka` (
   `formatas` int(11) NOT NULL,
   `id_Nuotrauka` int(11) NOT NULL,
   `fk_Prekeid_Preke` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `nuotrauka`
@@ -296,7 +299,7 @@ CREATE TABLE `preke` (
   `kategorija` int(11) NOT NULL,
   `id_Preke` int(11) NOT NULL,
   `fk_Vartotojasid_Vartotojas` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `preke`
@@ -318,7 +321,7 @@ INSERT INTO `preke` (`aprasymas`, `data`, `pavadinimas`, `kategorija`, `id_Preke
 CREATE TABLE `salis` (
   `Pavadinimas` varchar(32) NOT NULL,
   `id_Salis` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `salis`
@@ -338,7 +341,7 @@ INSERT INTO `salis` (`Pavadinimas`, `id_Salis`) VALUES
 CREATE TABLE `statusas` (
   `id_STATUSAS` int(11) NOT NULL,
   `name` varchar(14) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `statusas`
@@ -362,7 +365,7 @@ CREATE TABLE `statymas` (
   `id_Statymas` int(11) NOT NULL,
   `fk_Vartotojasid_Vartotojas` int(11) NOT NULL,
   `fk_Aukcionasid_Aukcionas` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `statymas`
@@ -372,7 +375,13 @@ INSERT INTO `statymas` (`verte`, `laiko_zyme`, `id_Statymas`, `fk_Vartotojasid_V
 ('10.15', '2022-12-14 20:03:48', 1, 3, 1),
 ('12.00', '2022-12-14 20:04:01', 2, 1, 1),
 ('20.00', '2022-12-14 20:04:15', 3, 5, 1),
-('25.00', '2022-12-14 20:17:04', 4, 2, 1);
+('25.00', '2022-12-14 20:17:04', 4, 2, 1),
+('1010.00', '2022-12-18 22:32:59', 14, 1, 3),
+('1010.00', '2022-12-18 22:32:59', 15, 1, 3),
+('1012.00', '2022-12-18 22:34:10', 16, 1, 3),
+('1013.50', '2022-12-18 22:39:13', 17, 1, 3),
+('4999.00', '2022-12-18 22:40:39', 18, 1, 3),
+('5000.00', '2022-12-18 22:41:27', 19, 1, 3);
 
 -- --------------------------------------------------------
 
@@ -383,7 +392,7 @@ INSERT INTO `statymas` (`verte`, `laiko_zyme`, `id_Statymas`, `fk_Vartotojasid_V
 CREATE TABLE `stebi` (
   `fk_Aukcionasid_Aukcionas` int(11) NOT NULL,
   `fk_Vartotojasid_Vartotojas` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `stebi`
@@ -407,7 +416,7 @@ CREATE TABLE `transakcija` (
   `komentaras` text NOT NULL,
   `id_Transakcija` int(11) NOT NULL,
   `fk_Vartotojasid_Vartotojas` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -426,14 +435,14 @@ CREATE TABLE `vartotojas` (
   `lytis` int(11) DEFAULT NULL,
   `id_Vartotojas` int(11) NOT NULL,
   `fk_Administratorius` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `vartotojas`
 --
 
 INSERT INTO `vartotojas` (`vardas`, `pavarde`, `email`, `telefono_nr`, `slaptazodis`, `likutis`, `blokuotas`, `lytis`, `id_Vartotojas`, `fk_Administratorius`) VALUES
-('Matas', 'Vaitkevičius', 'matvai2@ktu.lt', '+37061719386', 'ABC123', '68.59', 0, 1, 1, NULL),
+('Matas', 'Vaitkevičius', 'matvai2@ktu.lt', '+37061719386', 'ABC123', '1986.99', 0, 1, 1, NULL),
 ('Spamas', 'Spamaitis', 'spam@ktu.lt', NULL, 'ABC123', '0.00', 0, 1, 2, NULL),
 ('TESTAS', 'TESTUOTOJAS', 'test@ktu.lt', NULL, 'ABC123', '0.00', 0, 3, 3, NULL),
 ('', '', '', NULL, '', '0.00', 0, NULL, 4, NULL),
@@ -451,7 +460,7 @@ CREATE TABLE `zinute` (
   `id_Zinute` int(11) NOT NULL,
   `fk_Vartotojasid_Vartotojas` int(11) NOT NULL,
   `fk_Aukcionasid_Aukcionas` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `zinute`
@@ -636,13 +645,13 @@ ALTER TABLE `blokuotas_vartotojas`
 -- AUTO_INCREMENT for table `komentaras`
 --
 ALTER TABLE `komentaras`
-  MODIFY `id_Komentaras` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=240;
+  MODIFY `id_Komentaras` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=241;
 
 --
 -- AUTO_INCREMENT for table `kortele`
 --
 ALTER TABLE `kortele`
-  MODIFY `id_Kortele` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_Kortele` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `miestas`
@@ -672,7 +681,7 @@ ALTER TABLE `salis`
 -- AUTO_INCREMENT for table `statymas`
 --
 ALTER TABLE `statymas`
-  MODIFY `id_Statymas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_Statymas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `transakcija`

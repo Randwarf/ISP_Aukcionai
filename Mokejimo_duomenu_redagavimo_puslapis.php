@@ -37,7 +37,7 @@
                 <form method="post" action="">
                   <div class="col-12 card card-body bg-light p-4">
                       <div class="row"> 
-                        <div class="col-4">
+                        <div class="col-6">
                             <h3>Mokėjimo duomenys</h3>
                             <br><label for="card_number"><i class="fa fa-user"></i>Kortelės numeris</label><br>
                                 <input type="text" name="card_number" placeholder="0000111144443333"><br><br>
@@ -53,6 +53,19 @@
                             <label for="card_cvc"><i class="fa fa-institution"></i>CVC</label><br>
                                 <input type="number" min="100" max="999" name="card_cvc" placeholder="601"><br><br>
                             <button type="submit" name="update_card_details">Išsaugoti</button>
+                        </div>
+
+                        <div class="col-6">
+                            <h3>Pinigų įsidėjimas</h3>
+                            <br><label for="card_number"><i class="fa fa-user"></i>Pinigų kiekis</label><br>
+                            <?php
+                                $sql = "SELECT * FROM `vartotojas` WHERE vartotojas.id_Vartotojas = '".$_SESSION['userid']."'";
+                                $result = mysqli_query($db, $sql);
+                                $row = mysqli_fetch_assoc($result);
+                                $curent_piggybank = $row['likutis'];
+                            ?>
+                                <input style="min-width:250px" type="text" name="money_input" required placeholder="Dabartinis likutis: <?php echo $curent_piggybank;?>€"><br><br>
+                            <button type="submit" name="update_piggybank">Papildyti</button>
                         </div>
                     </div>
                   </div>
@@ -87,5 +100,17 @@
                 header('Location: Mokejimo_duomenu_redagavimo_puslapis.php');
         }
     ?>
+        <?php
+                if(isset($_POST['update_piggybank'])){
+                    $money_input = $_POST['money_input'];
+                    $user_id = $_SESSION['userid'];
+
+                    $sql = "UPDATE `vartotojas` SET vartotojas.likutis = vartotojas.likutis + '".$money_input."' WHERE vartotojas.id_Vartotojas = '".$_SESSION['userid']."'";
+                    if (!mysqli_query($db, $sql))  die ("Klaida įrašant:" .mysqli_error($db));
+
+                    mysqli_close($db);
+                    header('Location: Mokejimo_duomenu_redagavimo_puslapis.php');
+            }
+        ?>
     </body>
 </html>
