@@ -24,10 +24,14 @@
 <?php include("header.php");?>
 		
         <h2 style="background-color: #2b2d33;color:white;  padding:10px">Aukcionai:</h2>
-
+		<div>
+			<form action="Prekes_sukurimo_langas.php">
+                        <button class="btn btn-primary">Pridėti prekę</button>
+            </form>
+		</div>
 		<div class="content">
 			<?php
-            $query = "SELECT * 
+            $query = "SELECT preke.pavadinimas as name, nuotrauka.nuoroda, preke.aprasymas, preke.id_Preke
 					FROM preke
 					LEFT JOIN nuotrauka ON preke.id_Preke=nuotrauka.fk_Prekeid_Preke
 					WHERE preke.fk_Vartotojasid_Vartotojas=" . $_SESSION['userid'];
@@ -40,7 +44,7 @@
 	            echo "<div class='card' style='width: 18rem; border:1;'>
 				<img src='" . $item['nuoroda'] . "' class='card-img-top' alt='...'>
 				<div class='card-body'>
-					<h5 class='card-title'>". $item['pavadinimas']."</h5>
+					<h5 class='card-title'>". $item['name']."</h5>
 					<p class='card-text'>".$item['aprasymas']."</p>
 					<a href='Prekes_langas.php?id=".$item['id_Preke']."' class='btn btn-primary'>Peržiūrėti</a>
 				</div>
