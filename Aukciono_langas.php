@@ -143,7 +143,14 @@
                 <form>
                   <input style="margin-right:10px; margin-left:10px" type="button" class="btn btn-primary" value="Grįžti" onclick="history.back()">
                  </form>
-                 <button style="margin-right:10px" class="btn"><i class="fa fa-star"></i></button>
+                 
+                 <?php 
+                 if(isset($_SESSION['userid'])){
+                  $locationsteb = "window.location.href='prideti_stebima.php?id=" . $_GET['id']."'";
+                  echo "<button style='margin-right:10px' onclick=\"".$locationsteb."\" class='btn'><i class='fa fa-star'></i></button>";
+                }
+                 ?> 
+                
                  <?php
                  if (isset($USERINFO) && $USERINFO['fk_Administratorius'] != null) {
                   echo "<button style='margin-right:10px' onclick=\"window.location.href='prasytiAtaskaitos.php?id=" . $_GET['id'] . "'\" class ='btn'><i class='fa fa-line-chart'></i></button>";
