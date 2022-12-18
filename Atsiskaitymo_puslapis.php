@@ -22,16 +22,38 @@
                 </tr>
             </thead>    
             <tbody>
-                <tr>
-                    <td style="width: 5px;">Sugižęs pienas</td>
-                    <td style="width: 10px;">150,00€</td>
-                    <td style="width: 10px;">Nesumokėta</td>
-                </tr>
-                <tr>
-                    <td style="width: 5px;">Lamborghini</td>
-                    <td style="width: 10px;">20,00€</td>
-                    <td style="width: 10px;">Įvykdytas</td>
-                </tr>
+                <?php
+                    $sql = "SELECT preke.pavadinimas as 'auction_item_name', IFNULL(aukcionas.galutine_kaina, aukcionas.min) as 'auction_current_value', statusas.name as 'auction_status' FROM `aukcionas` 
+                    INNER JOIN statusas
+                    INNER JOIN preke
+                    WHERE aukcionas.fk_Vartotojasid_Vartotojas = '1' AND statusas.id_STATUSAS = aukcionas.statusas AND preke.id_Preke = aukcionas.fk_Prekeid_Preke";
+
+                    $result = mysqli_query($db, $sql);
+                    if (!$result || (mysqli_num_rows($result) < 1))
+                    {
+                        echo "<tr>";
+                            echo "<td style='width: 5px;'>-</td>" ;
+                            echo "<td style='width: 10px;'>-</td>" ;
+                            echo "<td style='width: 10px;'>-</td>" ;
+                            echo "</tr>";
+                    }
+                    else
+                    {
+                        while($row = mysqli_fetch_assoc($result)) 
+			            {
+                            $auction_item_name = $row['auction_item_name'];
+                            $auction_current_value = round($row['auction_current_value'],2);
+                            $auction_status = $row['auction_status'];
+
+                            echo "<tr>";
+                            echo "<td style='width: 5px;'>".$auction_item_name."</td>" ;
+                            echo "<td style='width: 10px;'>".$auction_current_value."€</td>" ;
+                            echo "<td style='width: 10px;'>".$auction_status."</td>" ;
+                            echo "</tr>";
+                        }
+                    }
+                    mysqli_close($db);
+                ?>
             </tbody>
             </table>
     </body>

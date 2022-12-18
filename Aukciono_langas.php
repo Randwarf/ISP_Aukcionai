@@ -129,12 +129,22 @@
                     ?>
                   </div>
                   <!-- Min/Max-->
-                  <form method='post'>
-                    <input type='hidden' name='aukcionas' value='<?php echo $id?>'>
-                    <label for="quantity">Statoma suma: (min <?php echo $result['min'];?> max <?php echo $result['max'];?>):</label>
-                    <input type="number" id="quantity" name="quantity" min='<?php echo $result['min'];?>' max='<?php echo $result['max'];?>'>
-                    <input type="submit" value="Statyti">
+                  <form method='post' action="Aukciono_langas_statymas.php" >
+                    <?php
+                      $current_max_bid = $result['galutine_kaina'] == null ? $result['min']+1 : ($result['galutine_kaina'] <= $result['min']+1 ? $result['min']+1 : $result['galutine_kaina']+1);
+                    ?>
+                    <label for="bid_size">Statoma suma: (min <?php echo $current_max_bid; ?> max <?php echo $result['max'];?>):</label>
+                    <input type="number" name="bid_size" step='.01' min='<?php echo $current_max_bid; ?>' max='<?php echo $result['max'];?>' required <?php if($current_max_bid > $result['max']) echo 'disabled';?>>
+                    <input type="hidden" name="auction_id" value='<?php echo $id ?>'>
+                    <input type="submit" name="submit_bid" value="Statyti" <?php if($current_max_bid > $result['max']) echo 'disabled';?>>
                    </form>
+                   <?php 
+                    $fullUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
+                        if (strpos($fullUrl, "bid_size=insufficient_funds") == true){
+                      echo "<p style='color:red;'>Klaida: Neturite pakankamai lėšų";
+                    }
+                    ?>
                 </div>
             </div>
               <br>
