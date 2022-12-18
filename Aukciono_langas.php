@@ -129,9 +129,10 @@
                     ?>
                   </div>
                   <!-- Min/Max-->
-                  <form>
+                  <form method='post'>
+                    <input type='hidden' name='aukcionas' value='<?php echo $id?>'>
                     <label for="quantity">Statoma suma: (min <?php echo $result['min'];?> max <?php echo $result['max'];?>):</label>
-                    <input type="number" id="quantity" name="quantity" min="100" max="500">
+                    <input type="number" id="quantity" name="quantity" min='<?php echo $result['min'];?>' max='<?php echo $result['max'];?>'>
                     <input type="submit" value="Statyti">
                    </form>
                 </div>
