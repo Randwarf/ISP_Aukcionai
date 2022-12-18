@@ -14,7 +14,7 @@
     <?php 
     
     include("header.php");
-    $query= "SELECT *, preke.pavadinimas as ppavadinimas, aukcionas.statusas as statusas FROM preke
+    $query= "SELECT *, preke.pavadinimas as ppavadinimas, preke.fk_Vartotojasid_Vartotojas as kurejas, aukcionas.statusas as statusas FROM preke
              LEFT JOIN nuotrauka ON preke.id_Preke=nuotrauka.fk_Prekeid_Preke
              LEFT JOIN kategorija ON preke.kategorija=kategorija.id_KATEGORIJA
              LEFT JOIN aukcionas ON preke.id_Preke=aukcionas.fk_Prekeid_Preke
@@ -47,7 +47,7 @@
                   </div>
                   <!-- Aprasymas-->
                   <div class="div-group">
-                    <label for="aprasymas">aprasymas:</label>
+                    <label for="aprasymas">Aprašymas:</label>
                       <div class="input-group">
                         <textarea readonly placeholder="$aprasymas" id="aprasymas" class="form-control"><?php echo $result['aprasymas'];?></textarea>
                       </div>
@@ -71,7 +71,16 @@
                   <input type='button' class='btn btn-primary' value='Atmesti' onclick='window.location.href='atmesti.php?id=".$_GET['id']."''>
                  </form>";
                 }
+                if($result['kurejas'] == $_SESSION['userid']){
 
+                  $locationsteb = "window.location.href='istrinti.php?id=" . $_GET['id']."'";
+                  echo "<button style='margin-right:10px' onclick=\"".$locationsteb."\" class='btn btn-primary'>Ištrinti</button>";
+                  
+                  $locationsteb2 = "window.location.href='redaguoti.php?id=" . $_GET['id']."'";
+                  echo "<button style='margin-right:10px' onclick=\"".$locationsteb2."\" class='btn btn-primary'>Redaguoti</button>";
+
+                  
+                }
                 ?>
 
                <?php
