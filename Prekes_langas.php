@@ -14,7 +14,7 @@
     <?php 
     
     include("header.php");
-    $query= "SELECT *, preke.pavadinimas as ppavadinimas FROM preke
+    $query= "SELECT *, preke.pavadinimas as ppavadinimas, aukcionas.statusas as statusas FROM preke
              LEFT JOIN nuotrauka ON preke.id_Preke=nuotrauka.fk_Prekeid_Preke
              LEFT JOIN kategorija ON preke.kategorija=kategorija.id_KATEGORIJA
              LEFT JOIN aukcionas ON preke.id_Preke=aukcionas.fk_Prekeid_Preke
@@ -62,7 +62,7 @@
                </form>
                 <?php
                 
-                if (isset($USERINFO) && $USERINFO['fk_Administratorius']!= null){
+                if (isset($USERINFO) && $USERINFO['fk_Administratorius']!= null && $result['statusas']==3){
                   echo "<form>
                   <input type='button' class='btn btn-primary' value='Patvirtinti' onclick='window.location.href='patvirtinti.php?id=".$_GET['id']."''>
                  </form>
