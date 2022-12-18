@@ -16,27 +16,54 @@
     </head>
 
     <body>
+        <!-- Komentaro paskelbimas-->
+        <form method="post" action="skelbti_komentara.php?id=<?php echo $id;?>">
+            <br>
+            <input <?php if(!isset($_SESSION['userid']) || $USERINFO['blokuotas']==1){echo "type='hidden'";}?> name="comment" id="comment" type="text" placeholder="Įveskite savo komentarą" class="form-control">
+            <input <?php if(!isset($_SESSION['userid']) || $USERINFO['blokuotas']==1){echo "type='hidden'";}?> type="submit" value="Paskelbti komentarą" class="form-control">
+        </form>
+
     <?php include("header.php");?>
         <h2>Žinutės</h2>
-        <table class="table">
+        <?php
+        $query = "SELECT * FROM zinute
+                        left JOIN vartotojas ON zinute.fk_Vartotojasid_Vartotojas=vartotojas.id_Vartotojas
+                        left JOIN aukcionas ON zinute.fk_Aukcionasid_Aukcionas=aukcionas.id_Aukcionas
+                        left JOIN preke ON aukcionas.fk_Prekeid_Preke=preke.id_Preke
+                        WHERE zinute.fk_Vartotojasid_Vartotojas=" . $_SESSION['userid']."
+                        ORDER BY laiko_zyme desc";
+
+            ?>
+            <table class="table">
             <thead class="thead-dark">
                 <tr>    
                     <th style="width: 5px;">Prekės pavadinimas</th>
                     <th style="width: 10px;">Žinutė</th>
                     <th style="width: 10px;">Siuntėjas</th>
                 </tr>
-            </thead>    
+            </thead>
             <tbody>
-                <tr>
-                    <td style="width: 5px;">Sugižęs pienas</td>
-                    <td style="width: 10px;">Laba diena, ar jo galiojimo laikas dar nepasibaigęs?</td>
-                    <td style="width: 10px;">Petras</td>
-                </tr>
-                <tr>
-                    <td style="width: 5px;">Lamborghini</td>
-                    <td style="width: 10px;">Sw, kiek arklio galių?</td>
-                    <td style="width: 10px;">Jonas</td>
-                </tr>
+            
+            <?php
+
+            $result = mysqli_query($db, $query);
+			if (mysqli_num_rows($result) <= 0){
+	            echo "<tr>
+                        <td style='width: 5px;'> DEJA PREKIŲ NĖRA </td>
+                    </tr>";
+			}
+
+
+            
+
+            foreach ($result as $item){
+            echo "<tr>
+                    <td style='width: 5px;'>".$item['pavadinimas'] ."</td>
+                    <td style='width: 10px;'>".$item['tekstas'] ."</td>
+                    <td style='width: 10px;'>".$item['vardas'] ."</td>
+                </tr>";
+            }   ?>
+            
             </tbody>
             </table>
     </body>

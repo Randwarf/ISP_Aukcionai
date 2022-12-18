@@ -129,10 +129,9 @@
                     ?>
                   </div>
                   <!-- Min/Max-->
-                  <form method='post'>
-                    <input type='hidden' name='aukcionas' value='<?php echo $id?>'>
+                  <form>
                     <label for="quantity">Statoma suma: (min <?php echo $result['min'];?> max <?php echo $result['max'];?>):</label>
-                    <input type="number" id="quantity" name="quantity" min='<?php echo $result['min'];?>' max='<?php echo $result['max'];?>'>
+                    <input type="number" id="quantity" name="quantity" min="100" max="500">
                     <input type="submit" value="Statyti">
                    </form>
                 </div>
@@ -188,6 +187,11 @@
                 <input <?php if(!isset($_SESSION['userid']) || $USERINFO['blokuotas']==1){echo "type='hidden'";}?> type="submit" value="Paskelbti komentarą" class="form-control">
               </form>
 
+              <form method="post" action="skelbti_zinute.php?id=<?php echo $id;?>">
+                <br>
+                <input style="background-color:powderblue;" <?php if(!isset($_SESSION['userid']) || $USERINFO['blokuotas']==1){echo "type='hidden'";}?> name="message" id="message" type="text" placeholder="Rašyti privačia žinute" class="form-control">
+                <input style="background-color:powderblue;"<?php if(!isset($_SESSION['userid']) || $USERINFO['blokuotas']==1){echo "type='hidden'";}?> type="submit" value="Siųsti" class="form-control">
+              </form>
               <?php
               ?>
             </div>
