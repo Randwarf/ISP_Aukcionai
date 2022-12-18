@@ -120,7 +120,7 @@
 
                     <?php
                     
-                    if ($_SESSION['userid']==$result['id_Vartotojas'] && isset($statymas)){
+                    if (isset($_SESSION['userid']) && $_SESSION['userid']==$result['id_Vartotojas'] && isset($statymas)){
                       //jei žiūri savininkas
                       echo "<label>Pirkėjas:</label>";
                       echo "<label>".$statymas['vardas']." ".$statymas['pavarde']."</label>";
@@ -155,6 +155,7 @@
                  </form>
                  
                  <?php 
+                if (isset($_SESSION['userid'])){
                 $query = "SELECT * FROM stebi WHERE fk_Aukcionasid_Aukcionas='" . $id . "' AND fk_Vartotojasid_Vartotojas='".$_SESSION['userid']."'";
                 $stebimi = mysqli_query($db, $query);
                 if (mysqli_num_rows($stebimi) < 1){
@@ -169,6 +170,7 @@
                     echo "<button style='margin-right:10px' onclick=\"".$locationsteb."\" class='btn'><i class='fa fa-star'></i></button>";
                   }
                 }
+              }
                  ?> 
                 
                  <?php
@@ -211,7 +213,7 @@
               <!-- Komentaro paskelbimas-->
               <form method="post" action="skelbti_komentara.php?id=<?php echo $id;?>">
                 <br>
-                <input <?php if(!isset($_SESSION['userid']) || $USERINFO['blokuotas']==1){echo "type='hidden'";}?> name="comment" id="comment" type="text" placeholder="Įveskite savo komentarą" class="form-control">
+                <input <?php if(!isset($_SESSION['userid']) || $USERINFO['blokuotas']==1){echo "type='hidden'";}?> required name="comment" id="comment" type="text" placeholder="Įveskite savo komentarą" class="form-control">
                 <input <?php if(!isset($_SESSION['userid']) || $USERINFO['blokuotas']==1){echo "type='hidden'";}?> type="submit" value="Paskelbti komentarą" class="form-control">
               </form>
 

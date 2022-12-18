@@ -12,7 +12,10 @@
 
     <body>
     <?php 
-      include("header.php");
+        include("header.php");
+        $query = "SELECT preke.pavadinimas, preke.kategorija, preke.aprasymas, nuotrauka.pavadinimas AS photo_name FROM preke JOIN nuotrauka ON nuotrauka.fk_Prekeid_Preke=".$_GET['id']." WHERE preke.id_Preke=".$_GET['id'];
+        $result = mysqli_query($db, $query);
+        $row = mysqli_fetch_assoc($result);
     ?>
 
 <?php
@@ -20,24 +23,27 @@
 
       <div class="container">
             <div class="col-12 card card-body bg-light p-4">
-              <form method="post" action="Prekes_duomenu_tikrinimas.php" enctype="multipart/form-data">
+              <form method="post" action="Prekes_redagavimo_duomenu_patikrinimas.php" enctype="multipart/form-data">
                 <!-- Pavadinimas-->
                 <div class="form-group">
                   <label for="pavadinimas">Prekės pavadinimas:</label>
-                  <input type="text" class="form-control" name="pavadinimas" id="pavadinimas" placeholder="$pavadinimas" <?php if(isset($_SESSION['pavadinimas'])) {echo "value=".$_SESSION['pavadinimas'];} ?>>
+                  <input type="text" class="form-control" name="pavadinimas" id="pavadinimas" placeholder="$pavadinimas" <?php if(isset($_SESSION['pavadinimas'])) {echo "value=".$_SESSION['pavadinimas'];}
+                  else{echo "value=".$row['pavadinimas'];} ?>>
                     <?php if(isset($_SESSION['name_error'])){echo "<p style=\"color:red\">".$_SESSION['name_error']."</p>"; unset($_SESSION['name_error']);}?>
+                    
+                    <input type="text" style="visibility:hidden" name="id" id="id" value="<?php echo $_GET['id']; ?>" >
                 </div>
                 <!-- Kategorija-->
                 <div class="form-group">
                   <label for="kategorija">Kategorija:
                     <select id="kategorija" name="kategorija" required>
-                      <option value="0" <?php if(isset($_SESSION['kategorija']) && $_SESSION['kategorija'] == 0) {echo "selected";} ?>>-----</option>
-                      <option value="1" <?php if(isset($_SESSION['kategorija']) && $_SESSION['kategorija'] == 1) {echo "selected";} ?>>Automobiliai</option>
-                      <option value="2" <?php if(isset($_SESSION['kategorija']) && $_SESSION['kategorija'] == 2) {echo "selected";} ?>>Antikvaras</option>
-                      <option value="4" <?php if(isset($_SESSION['kategorija']) && $_SESSION['kategorija'] == 4) {echo "selected";} ?>>Baldai</option>
-                      <option value="3" <?php if(isset($_SESSION['kategorija']) && $_SESSION['kategorija'] == 3) {echo "selected";} ?>>Elektronika</option>
-                      <option value="6" <?php if(isset($_SESSION['kategorija']) && $_SESSION['kategorija'] == 6) {echo "selected";} ?>>Laisvalaikis</option>
-                      <option value="5" <?php if(isset($_SESSION['kategorija']) && $_SESSION['kategorija'] == 5) {echo "selected";} ?>>Kita</option>
+                      <option value="0" <?php if(isset($_SESSION['kategorija']) && $_SESSION['kategorija'] == 0) {echo "selected";}else if($row['kategorija']==0){echo "selected";} ?>>-----</option>
+                      <option value="1" <?php if(isset($_SESSION['kategorija']) && $_SESSION['kategorija'] == 1) {echo "selected";}else if($row['kategorija']==1){echo "selected";}  ?>>Automobiliai</option>
+                      <option value="2" <?php if(isset($_SESSION['kategorija']) && $_SESSION['kategorija'] == 2) {echo "selected";}else if($row['kategorija']==2){echo "selected";} ?>>Antikvaras</option>
+                      <option value="4" <?php if(isset($_SESSION['kategorija']) && $_SESSION['kategorija'] == 4) {echo "selected";}else if($row['kategorija']==4){echo "selected";}  ?>>Baldai</option>
+                      <option value="3" <?php if(isset($_SESSION['kategorija']) && $_SESSION['kategorija'] == 3) {echo "selected";}else if($row['kategorija']==3){echo "selected";}  ?>>Elektronika</option>
+                      <option value="6" <?php if(isset($_SESSION['kategorija']) && $_SESSION['kategorija'] == 6) {echo "selected";}else if($row['kategorija']==6){echo "selected";}  ?>>Laisvalaikis</option>
+                      <option value="5" <?php if(isset($_SESSION['kategorija']) && $_SESSION['kategorija'] == 5) {echo "selected";}else if($row['kategorija']==5){echo "selected";}  ?>>Kita</option>
                     </select>
                   </label>
                   <p> 
@@ -55,7 +61,7 @@
                   <label for="aprasymas">Aprašymas:</label>
                   <?php if(isset($_SESSION['description_error'])){echo "<p style=\"color:red\">".$_SESSION['description_error']."</p>"; unset($_SESSION['description_error']);}?>
                     <div class="input-group">
-                      <textarea placeholder="$aprasymas" id="aprasymas" name="aprasymas" class="form-control"><?php if(isset($_SESSION['aprasymas'])) {echo $_SESSION['aprasymas'];} ?></textarea>
+                      <textarea placeholder="$aprasymas" id="aprasymas" name="aprasymas" class="form-control"><?php if(isset($_SESSION['aprasymas'])) {echo $_SESSION['aprasymas'];}else{echo $row['aprasymas'];} ?></textarea>
                     </div>
                 </div>
                 <!-- Siusti mygtukas-->
