@@ -30,7 +30,7 @@
                         left JOIN vartotojas ON zinute.fk_Vartotojasid_Vartotojas=vartotojas.id_Vartotojas
                         left JOIN aukcionas ON zinute.fk_Aukcionasid_Aukcionas=aukcionas.id_Aukcionas
                         left JOIN preke ON aukcionas.fk_Prekeid_Preke=preke.id_Preke
-                        WHERE zinute.fk_Vartotojasid_Vartotojas=" . $_SESSION['userid']."
+                        WHERE preke.fk_Vartotojasid_Vartotojas=" . $_SESSION['userid']."
                         ORDER BY laiko_zyme desc";
 
             ?>

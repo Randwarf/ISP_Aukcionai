@@ -120,7 +120,7 @@
 
                     <?php
                     
-                    if ($_SESSION['userid']==$result['id_Vartotojas'] && isset($statymas)){
+                    if (isset($_SESSION['userid']) && $_SESSION['userid']==$result['id_Vartotojas'] && isset($statymas)){
                       //jei žiūri savininkas
                       echo "<label>Pirkėjas:</label>";
                       echo "<label>".$statymas['vardas']." ".$statymas['pavarde']."</label>";
@@ -143,7 +143,26 @@
                 <form>
                   <input style="margin-right:10px; margin-left:10px" type="button" class="btn btn-primary" value="Grįžti" onclick="history.back()">
                  </form>
-                 <button style="margin-right:10px" class="btn"><i class="fa fa-star"></i></button>
+                 
+                 <?php 
+                if (isset($_SESSION['userid'])){
+                $query = "SELECT * FROM stebi WHERE fk_Aukcionasid_Aukcionas='" . $id . "' AND fk_Vartotojasid_Vartotojas='".$_SESSION['userid']."'";
+                $stebimi = mysqli_query($db, $query);
+                if (mysqli_num_rows($stebimi) < 1){
+                  if(isset($_SESSION['userid'])){
+                    $locationsteb = "window.location.href='prideti_stebima.php?id=" . $_GET['id']."'";
+                    echo "<button style='margin-right:10px' onclick=\"".$locationsteb."\" class='btn'><i class='fa fa-star-o'></i></button>";
+                  }
+                }
+                else{
+                  if(isset($_SESSION['userid'])){
+                    $locationsteb = "window.location.href='prideti_stebima.php?id=" . $_GET['id']."'";
+                    echo "<button style='margin-right:10px' onclick=\"".$locationsteb."\" class='btn'><i class='fa fa-star'></i></button>";
+                  }
+                }
+              }
+                 ?> 
+                
                  <?php
                  if (isset($USERINFO) && $USERINFO['fk_Administratorius'] != null) {
                   echo "<button style='margin-right:10px' onclick=\"window.location.href='prasytiAtaskaitos.php?id=" . $_GET['id'] . "'\" class ='btn'><i class='fa fa-line-chart'></i></button>";
@@ -184,7 +203,7 @@
               <!-- Komentaro paskelbimas-->
               <form method="post" action="skelbti_komentara.php?id=<?php echo $id;?>">
                 <br>
-                <input <?php if(!isset($_SESSION['userid']) || $USERINFO['blokuotas']==1){echo "type='hidden'";}?> name="comment" id="comment" type="text" placeholder="Įveskite savo komentarą" class="form-control">
+                <input <?php if(!isset($_SESSION['userid']) || $USERINFO['blokuotas']==1){echo "type='hidden'";}?> required name="comment" id="comment" type="text" placeholder="Įveskite savo komentarą" class="form-control">
                 <input <?php if(!isset($_SESSION['userid']) || $USERINFO['blokuotas']==1){echo "type='hidden'";}?> type="submit" value="Paskelbti komentarą" class="form-control">
               </form>
 

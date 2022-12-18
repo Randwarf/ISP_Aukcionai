@@ -31,7 +31,7 @@
         $average = mysqli_query($db, $query);
         $average = mysqli_fetch_assoc($average);
         if (isset($average)){
-          echo "Statymų vidurkis: " . $average['average']."€";
+          echo "Statymų vidurkis: " . round($average['average'], 2)."€";
         }
         else{
           echo "Statymų vidurkis neegzistuoja: dar nebuvo statymų";
