@@ -30,7 +30,7 @@
                   
                 <div class="row"> 
                   <div class="col-4">
-                    <img style="max-width:100%; max-height:100%;"src="<?php echo implode($photo); ?>">
+                    <img style="max-width:100%; max-height:100%;"src="/isp_aukcionai/<?php echo implode($photo); ?>">
                 </div>
                   <div class="col-8">
                     <!-- Pavadinimas-->

@@ -25,7 +25,7 @@ if (!isset($_POST['aprasymas']) || strlen($_POST['aprasymas']) == 0) {
     exit;
 }
 
-$target_dir = "foto/";
+$target_dir = $_SERVER['DOCUMENT_ROOT']."/isp_aukcionai/foto/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
@@ -103,7 +103,7 @@ $row = mysqli_fetch_row($result);
 // header("Location: Prekes_sukurimo_langas.php");
 // exit;
 $query = "INSERT INTO nuotrauka (pavadinimas, nuoroda, formatas, fk_Prekeid_Preke)
-VALUES('" . basename($_FILES["fileToUpload"]["name"]) . "','" .$target_file. "','" . $file_type . "','" .$row[4]."')";
+VALUES('" . basename($_FILES["fileToUpload"]["name"]) . "','" ."foto/".basename($_FILES["fileToUpload"]["name"]). "','" . $file_type . "','" .$row[4]."')";
 
 if(mysqli_query($db, $query)){
     unset($_SESSION['pavadinimas']);

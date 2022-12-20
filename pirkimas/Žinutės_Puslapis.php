@@ -16,12 +16,6 @@
     </head>
 
     <body>
-        <!-- Komentaro paskelbimas-->
-        <form method="post" action="skelbti_komentara.php?id=<?php echo $id;?>">
-            <br>
-            <input <?php if(!isset($_SESSION['userid']) || $USERINFO['blokuotas']==1){echo "type='hidden'";}?> name="comment" id="comment" type="text" placeholder="Įveskite savo komentarą" class="form-control">
-            <input <?php if(!isset($_SESSION['userid']) || $USERINFO['blokuotas']==1){echo "type='hidden'";}?> type="submit" value="Paskelbti komentarą" class="form-control">
-        </form>
 
     <?php include($_SERVER['DOCUMENT_ROOT']."/isp_aukcionai/include/header.php");?>
         <h2>Žinutės</h2>
@@ -49,7 +43,7 @@
             $result = mysqli_query($db, $query);
 			if (mysqli_num_rows($result) <= 0){
 	            echo "<tr>
-                        <td style='width: 5px;'> DEJA PREKIŲ NĖRA </td>
+                        <td style='width: 5px;'> DEJA ŽINUČIŲ NĖRA </td>
                     </tr>";
 			}
 

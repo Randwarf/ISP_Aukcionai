@@ -46,7 +46,7 @@ if(mysqli_query($db, $query)){
 }
 else{
     $_SESSION['aukciono_statuso_error'] = "bad";
-    header("Location:Aukciono_kurimas.php.php?id=".$_POST['id']);
+    header("Location:Aukciono_kurimas.php?id=".$_POST['id']);
     exit;
 }
 

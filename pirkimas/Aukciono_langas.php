@@ -68,7 +68,7 @@
                   <!-- Savininkas-->
                   <div class="div-group">
                     <label>Savininkas:</label>
-                    <label><?php echo "<a href='naudotojoPuslapis.php?id=".$result['id_Vartotojas']."'>".$result['vardas']." ".$result['pavarde']."</a>";?></label>
+                    <label><?php echo "<a href='/isp_aukcionai/naudotojoPuslapis.php?id=".$result['id_Vartotojas']."'>".$result['vardas']." ".$result['pavarde']."</a>";?></label>
                   </div>
                   <!-- Data-->
                   <div class="div-group">
@@ -99,12 +99,12 @@
                     <label for="status">Aukciono būsena:</label>
                     <label for="status"><?php echo $result['name'];?></label>
                     <?php 
-                    if($result['kurejas'] == $_SESSION['userid']){
+                    if(isset($_SESSION['userid']) && $result['kurejas'] == $_SESSION['userid']){
                       $button_state = "";
                       if($result['statusas']!=1){ 
                         $button_state = "disabled";
                       }
-                      $locationsteb2 = "window.location.href='/isp_aukcionai/inicijuoti.php?id=" . $_GET['id']."'";
+                      $locationsteb2 = "window.location.href='/isp_aukcionai/pardavimas/inicijuoti.php?id=" . $_GET['id']."'";
                         echo "<button style='margin-right:10px' onclick=\"".$locationsteb2."\"  ".$button_state.">Inicijuoti aukcioną</button>";
                     } ?>
                   </div>
@@ -205,7 +205,7 @@
 
               foreach ($result as $row){
                 echo "<div class='div-group'>
-                <div style='font-weight: bolder;'><a href='naudotojoPuslapis.php?id=".$row['id_Vartotojas']."'>".$row['vardas']." ".$row['pavarde']."</a></div>
+                <div style='font-weight: bolder;'><a href='/isp_aukcionai/naudotojoPuslapis.php?id=".$row['id_Vartotojas']."'>".$row['vardas']." ".$row['pavarde']."</a></div>
                 <div style='font-weight: lighter;'>".$row['tekstas']."</div>";
 
                 if (isset($USERINFO) && $USERINFO['fk_Administratorius'] != null){

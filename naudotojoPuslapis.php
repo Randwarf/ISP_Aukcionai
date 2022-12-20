@@ -52,27 +52,30 @@
         <div class="container-fluid">
             <div class="row justify-content-start">
                 <div class="col-3">
-                    <form action="Žinutės_Puslapis.php">
-                        <button class="button" >Žinutės</button>
+<?php
+
+if ($CURRINFO['id_Vartotojas']==$_SESSION['userid']){
+    echo "                    <form action='/isp_aukcionai/pirkimas/Žinutės_Puslapis.php'>
+                        <button class='button' >Žinutės</button>
                     </form>
-                    <form action="/isp_aukcionai/mokejimas/Adreso_atnaujinimo_puslapis.php">
-                        <button class="button">Atnaujinti adresą</button>
+                    <form action='/isp_aukcionai/mokejimas/Adreso_atnaujinimo_puslapis.php'>
+                        <button class='button'>Atnaujinti adresą</button>
                     </form>
-                    <form action="/isp_aukcionai/mokejimas/Atsiskaitymo_puslapis.php">
-                        <button class="button">Atsiskaitymai</button>
+                    <form action='/isp_aukcionai/mokejimas/Atsiskaitymo_puslapis.php'>
+                        <button class='button'>Atsiskaitymai</button>
                     </form>
-                    <form action="/isp_aukcionai/mokejimas/Mokejimo_duomenu_redagavimo_puslapis.php">
-                        <button class="button">Mokėjimo duomenys</button>
+                    <form action='/isp_aukcionai/mokejimas/Mokejimo_duomenu_redagavimo_puslapis.php'>
+                        <button class='button'>Mokėjimo duomenys</button>
                     </form>
-                    <form action="Pinigines_papildymas.php">
-                        <button class="button">Įsidėti pinigėlių</button>
+                    <form action='/isp_aukcionai/pirkimas/stebimi.php'>
+                        <button class='button'>Stebimi aukcionai</button>
                     </form>
-                    <form action="stebimi.php">
-                        <button class="button">Stebimi aukcionai</button>
-                    </form>
-                    <form action="manoPrekes.php">
-                        <button class="button">Mano prekes</button>
-                    </form>
+                    <form action='/isp_aukcionai/pardavimas/manoPrekes.php'>
+                        <button class='button'>Mano prekes</button>
+                    </form>";
+}
+
+?>
                 </div>
                 <div class="col-6"></div>
                 <div class="col-3">
