@@ -99,7 +99,7 @@
                     <label for="status">Aukciono būsena:</label>
                     <label for="status"><?php echo $result['name'];?></label>
                     <?php 
-                    if($result['kurejas'] == $_SESSION['userid']){
+                    if(isset($_SESSION['userid']) && $result['kurejas'] == $_SESSION['userid']){
                       $button_state = "";
                       if($result['statusas']!=1){ 
                         $button_state = "disabled";

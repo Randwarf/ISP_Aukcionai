@@ -33,7 +33,7 @@
 	            $kategorija = $_GET['id'];
 			}
 
-            $query = "SELECT *, preke.pavadinimas as pavadinimas
+            $query = "SELECT *, preke.pavadinimas as prekespavadinimas, nuotrauka.pavadinimas as nereikia
 					FROM preke
 					INNER JOIN aukcionas ON preke.id_Preke=aukcionas.fk_Prekeid_Preke
 					LEFT JOIN nuotrauka ON preke.id_Preke=nuotrauka.fk_Prekeid_Preke
@@ -48,7 +48,7 @@
 	            echo "<div class='card' style='width: 18rem; border:1;'>
 				<img src='/isp_aukcionai/" . $item['nuoroda'] . "' class='card-img-top' alt='...'>
 				<div class='card-body'>
-					<h5 class='card-title'>". $item['pavadinimas']."</h5>
+					<h5 class='card-title'>". $item['prekespavadinimas']."</h5>
 					<p class='card-text'>".$item['aprasymas']."</p>
 					<a href='Aukciono_langas.php?id=".$item['id_Aukcionas']."' class='btn btn-primary'>Peržiūrėti</a>
 				</div>
