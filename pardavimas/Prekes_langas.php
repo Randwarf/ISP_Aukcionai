@@ -38,7 +38,7 @@
                     <!-- Foto-->
                   <div class="div-group">
                   </div>
-                    <img style="max-width:100%; max-height:100%;"src="<?php echo $result['nuoroda'];?>" alt="Red dot" />
+                    <img style="max-width:100%; max-height:100%;"src="/isp_aukcionai/<?php echo $result['nuoroda'];?>" alt="Red dot" />
                   </div>
                   <div class="col-8">
                     <!-- Pavadinimas-->
