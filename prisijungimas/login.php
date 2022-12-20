@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <?php
 session_start();
-include "config.php";
+include($_SERVER['DOCUMENT_ROOT'] . "/isp_aukcionai/include/config.php");
 ?>
 <html>
 <head>
-	<title>Registruotis</title>
+	<title>Prisijungti</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
@@ -18,6 +18,7 @@ include "config.php";
 		padding: 0;
 		margin: 0;
 		border-radius: 25px;
+		
 	}
 	.login-form{
 		width: 350px;
@@ -36,7 +37,7 @@ include "config.php";
 		margin: 40px 0;
 	}
 	.login-form p{
-		font-size: 20px
+		font-size: 20px;4
 		margin: 15px 0;
 		align: center;
 	}
@@ -61,12 +62,11 @@ include "config.php";
 	.regis{
 		font-size: 18px;
 		font-weight: bold;
-		margin: 25px 0;
+		margin: 20px 0;
 		padding: 10px 15px;
-		width: 100%;
+		width: 49%;
 		border-radius: 5px;
 		border: 1;
-		align-items: center;
 	}
 	
 </style>
@@ -74,12 +74,19 @@ include "config.php";
 	  
 <?php
 
-if (isset($_POST['user'])) {
+if (isset($_POST['user'])){
 	
-	$query = "INSERT INTO vartotojas (vardas, pavarde, email, slaptazodis, likutis, blokuotas)
-			  VALUES('" . $_POST['name'] . "','" . $_POST['surname'] . "','" . $_POST['user'] . "','" . $_POST['password'] . "','0.0','0')";
-	if(mysqli_query($db, $query)){
-		header("Location: PagrindinisPuslapis.php");
+	$email = $_POST['user'];
+	$pass = $_POST['password'];
+	$query = "SELECT * FROM vartotojas
+			  WHERE email='".$email."' 
+			  AND slaptazodis='".$pass."'";
+
+	$result = mysqli_query($db, $query);
+	if (mysqli_num_rows($result)==1){
+		$row = mysqli_fetch_assoc($result);
+		$_SESSION['userid'] = $row['id_Vartotojas'];
+		header("Location: /isp_aukcionai/PagrindinisPuslapis.php");
 	}
 }
 
@@ -87,28 +94,23 @@ if (isset($_POST['user'])) {
 
 <body>
 	<div class ="login-form">
-		
-		<h1>Registruotis</h1>
-		<form method="post">
-			<p>El-pastas</p>
-			<input type="text" name="user" placeholder="El-pastas", required="required">
-			<p>Vardas</p>
-			<input type="text" name="name" placeholder="Vardas", required="required">
-			<p>Pavardė</p>
-			<input type="text" name="surname" placeholder="Pavardė", required="required">
+		<h1>Prisijungti</h1>
+		<form action="#" method="post">
+			<p>El-paštas</p>
+			<input type="text" name="user" placeholder="El-pastas">
 			<p>Slaptažodis</p>
-			<input type="password" name="password" placeholder="Slaptažodis", required="required">
+			<input type="password" name="password" placeholder="Slaptažodis">
 			
 			
 			<p>
-			<button type ="submit">Registruotis</button>
+			<button type ="submit">Prisijungti</button>
+			<a class ="regis" href = "signin.php"> Registruotis</a>
 			</p>
 		</form>
 		
 		<div class="container text-center">
-			<p><a href = "PagrindinisPuslapis.php"> Į pagrindinį puslapį?</a></p>
+			<p><a href = "/isp_aukcionai/PagrindinisPuslapis.php"> Į pagrindinį puslapį?</a></p>
 		</div>
-		
 	</div>
 </body>
 	  

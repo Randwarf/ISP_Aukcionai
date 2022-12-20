@@ -5,7 +5,7 @@ if (!isset($_GET['id'])){
     exit;
 }
 
-include("config.php");
+include($_SERVER['DOCUMENT_ROOT']."/isp_aukcionai/include/config.php");
 
 $id = $_GET['id'];
 session_start();

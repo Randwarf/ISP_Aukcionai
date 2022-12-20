@@ -1,4 +1,4 @@
-<?php include("header.php");?>
+<?php include($_SERVER['DOCUMENT_ROOT']."/isp_aukcionai/include/header.php");?>
     <?php
     if(isset($_POST['submit_bid'])){
         $id = $_POST['auction_id'];

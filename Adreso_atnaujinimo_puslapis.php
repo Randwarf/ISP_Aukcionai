@@ -11,7 +11,7 @@
       </head>
 
     <body>
-    <?php include("header.php");?>
+    <?php include($_SERVER['DOCUMENT_ROOT']."/isp_aukcionai/include/header.php");?>
       <div class="container">
         <?php 
           $sql = "SELECT * FROM `adresas` where adresas.fk_Vartotojasid_Vartotojas = '1'";

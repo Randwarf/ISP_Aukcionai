@@ -11,7 +11,7 @@
       </head>
 
     <body>
-    <?php include("header.php");?>
+    <?php include($_SERVER['DOCUMENT_ROOT']."/isp_aukcionai/include/header.php");?>
         <h2>Istorija</h2>
         <table class="table">
             <thead class="thead-dark">

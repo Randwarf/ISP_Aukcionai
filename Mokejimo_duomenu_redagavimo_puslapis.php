@@ -31,7 +31,7 @@
       </head>
 
     <body>
-    <?php include("header.php");?>
+    <?php include($_SERVER['DOCUMENT_ROOT']."/isp_aukcionai/include/header.php");?>
         <div class="container">
             <div class="container">
                 <form method="post" action="">

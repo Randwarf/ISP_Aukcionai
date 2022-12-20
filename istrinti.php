@@ -1,6 +1,6 @@
 <?php
 
-include("header.php");
+include($_SERVER['DOCUMENT_ROOT']."/isp_aukcionai/include/header.php");
 
 $query = "SELECT nuoroda from nuotrauka WHERE fk_Prekeid_Preke=" . $_GET['id'];
 $result = mysqli_query($db, $query);

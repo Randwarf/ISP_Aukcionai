@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <?php include('header.php')?>
+    <?php include($_SERVER['DOCUMENT_ROOT']."/isp_aukcionai/include/header.php");?>
 
     <form method='post' action='ataskaita.php'>
         <div>

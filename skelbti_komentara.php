@@ -4,7 +4,7 @@ if (!isset($_GET['id']) || !isset($_POST['comment'])){
     exit;
 }
 
-include("config.php");
+include($_SERVER['DOCUMENT_ROOT']."/isp_aukcionai/include/config.php");
 $db = mysqli_connect(config::DB_SERVER, config::DB_USERNAME, config::DB_PASSWORD, config::DB_NAME);
 
 $id = $_GET['id'];

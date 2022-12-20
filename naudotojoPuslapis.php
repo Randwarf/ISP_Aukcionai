@@ -34,7 +34,7 @@
 
     <body>
     <?php 
-    include("header.php");
+    include($_SERVER['DOCUMENT_ROOT']."/isp_aukcionai/include/header.php");
     if (isset($_GET['id']) && $_GET['id']!=$_SESSION['userid']){
         $query = "SELECT * FROM vartotojas WHERE id_Vartotojas=" . $_GET['id'];
         $result = mysqli_query($db, $query);
@@ -79,7 +79,7 @@
                 <?php
                     
                     if (isset($USERINFO) && $USERINFO['fk_Administratorius'] != null){
-                        $pav = "blokavimoPuslapis.php";
+                        $pav = "/isp_aukcionai/administravimas/blokavimoPuslapis.php";
                         echo "<form method='get' action='" . $pav . "'>
                         <input type='hidden'name='id' value=".$CURRINFO['id_Vartotojas']."></input>
                         <button class='button' style='border-color: #ff0000'>Blokuoti</button>

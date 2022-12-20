@@ -11,7 +11,7 @@
       </head>
 
     <body>
-    <?php include("header.php");?>
+    <?php include($_SERVER['DOCUMENT_ROOT']."/isp_aukcionai/include/header.php");?>
 
         <div style="margin:auto;max-width:800px">
             <a href="aukcionoPuslapis.php">ATGAL</a>

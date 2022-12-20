@@ -1,6 +1,6 @@
 
 <?php
-include("header.php");
+include($_SERVER['DOCUMENT_ROOT']."/isp_aukcionai/include/header.php");
 $_SESSION['pavadinimas'] = $_POST['pavadinimas'];
 $_SESSION['kategorija'] = $_POST['kategorija'];
 $_SESSION['aprasymas'] = $_POST['aprasymas'];

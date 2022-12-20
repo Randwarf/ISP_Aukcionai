@@ -34,7 +34,7 @@
       </head>
 
     <body>
-    <?php include("header.php");?>
+    <?php include($_SERVER['DOCUMENT_ROOT']."/isp_aukcionai/include/header.php");?>
 
     <?php
 
@@ -175,8 +175,8 @@
                 
                  <?php
                  if (isset($USERINFO) && $USERINFO['fk_Administratorius'] != null) {
-                  echo "<button style='margin-right:10px' onclick=\"window.location.href='prasytiAtaskaitos.php?id=" . $_GET['id'] . "'\" class ='btn'><i class='fa fa-line-chart'></i></button>";
-                  $location = "window.location.href='istrinti_aukciona.php?id=" . $_GET['id']."'";
+                  echo "<button style='margin-right:10px' onclick=\"window.location.href='/isp_aukcionai/administravimas/prasytiAtaskaitos.php?id=" . $_GET['id'] . "'\" class ='btn'><i class='fa fa-line-chart'></i></button>";
+                  $location = "window.location.href='/isp_aukcionai/administravimas/istrinti_aukciona.php?id=" . $_GET['id']."'";
                   echo "<button style='margin-right:10px' onclick=\"".$location."\" class='btn'><i class='fa fa-trash'></i></button>";
                 }
                  ?>
@@ -200,7 +200,7 @@
                 <div style='font-weight: lighter;'>".$row['tekstas']."</div>";
 
                 if (isset($USERINFO) && $USERINFO['fk_Administratorius'] != null){
-                  echo "<button onclick=\"window.location.href='trinti_komentara.php?id=".$row['id_Komentaras']."&back=".$_GET['id']."';\" class='btna'>Delete</button>";
+                  echo "<button onclick=\"window.location.href='/isp_aukcionai/administravimas/trinti_komentara.php?id=".$row['id_Komentaras']."&back=".$_GET['id']."';\" class='btna'>Delete</button>";
                 }
                 echo "</div>";
               }

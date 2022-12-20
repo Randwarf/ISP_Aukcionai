@@ -23,7 +23,7 @@
             <input <?php if(!isset($_SESSION['userid']) || $USERINFO['blokuotas']==1){echo "type='hidden'";}?> type="submit" value="Paskelbti komentarą" class="form-control">
         </form>
 
-    <?php include("header.php");?>
+    <?php include($_SERVER['DOCUMENT_ROOT']."/isp_aukcionai/include/header.php");?>
         <h2>Žinutės</h2>
         <?php
         $query = "SELECT * FROM zinute

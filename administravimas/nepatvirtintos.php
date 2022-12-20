@@ -11,7 +11,7 @@
       </head>
 
     <body>
-    <?php include("header.php");?>
+    <?php include($_SERVER['DOCUMENT_ROOT']."/isp_aukcionai/include/header.php");?>
 
         <h2>Nepatvirtintos prekės:</h2>
         <table class="table">
@@ -34,7 +34,7 @@
 
                 foreach ($result as $row){
                     echo "<tr>";
-                    echo "<td><a href='Prekes_langas.php?id=".$row['id_Preke']."'>".$row['pavadinimas']."</a></td>";
+                    echo "<td><a href='/isp_aukcionai/Prekes_langas.php?id=".$row['id_Preke']."'>".$row['pavadinimas']."</a></td>";
                     echo "<td>". $row['aprasymas'] ."</td>";
                     echo "<th>" . $row['vardas'] . " " . $row['pavarde'] . "</th>";
                     echo "</tr>";

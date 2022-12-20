@@ -12,7 +12,7 @@
 
     <body>
     <?php 
-      include("header.php");
+      include($_SERVER['DOCUMENT_ROOT']."/isp_aukcionai/include/header.php");
     ?>
 
 <?php

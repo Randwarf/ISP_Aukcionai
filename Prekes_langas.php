@@ -13,7 +13,7 @@
     <body>
     <?php 
     
-    include("header.php");
+    include($_SERVER['DOCUMENT_ROOT']."/isp_aukcionai/include/header.php");
     $query= "SELECT *, preke.pavadinimas as ppavadinimas, preke.fk_Vartotojasid_Vartotojas as kurejas, aukcionas.statusas as statusas FROM preke
              LEFT JOIN nuotrauka ON preke.id_Preke=nuotrauka.fk_Prekeid_Preke
              LEFT JOIN kategorija ON preke.kategorija=kategorija.id_KATEGORIJA
@@ -64,11 +64,11 @@
                 
                 if (isset($USERINFO) && $USERINFO['fk_Administratorius']!= null && $result['statusas']==3){
                   echo "<form>
-                  <input type='button' class='btn btn-primary' value='Patvirtinti' onclick='window.location.href='patvirtinti.php?id=".$_GET['id']."''>
+                  <input type='button' class='btn btn-primary' value='Patvirtinti' onclick=\"window.location.href='/isp_aukcionai/administravimas/patvirtinti.php?id=".$_GET['id']."'\">
                  </form>
     
                  <form>
-                  <input type='button' class='btn btn-primary' value='Atmesti' onclick='window.location.href='atmesti.php?id=".$_GET['id']."''>
+                  <input type='button' class='btn btn-primary' value='Atmesti' onclick=\"window.location.href='/isp_aukcionai/administravimas/atmesti.php?id=".$_GET['id']."'\">
                  </form>";
                 }
                 if($result['kurejas'] == $_SESSION['userid']){

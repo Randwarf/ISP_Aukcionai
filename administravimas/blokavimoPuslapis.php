@@ -12,7 +12,7 @@
 
     <body>
     <?php 
-    include("header.php");
+    include($_SERVER['DOCUMENT_ROOT']."/isp_aukcionai/include/header.php");
     
     $query = "SELECT * FROM vartotojas WHERE id_Vartotojas=" . $_GET['id'];
     $result = mysqli_query($db, $query);
@@ -20,7 +20,7 @@
     ?>
 
         <div style="margin:auto;max-width:800px">
-            <a href="naudotojoPuslapis.php">ATGAL</a>
+            <a href="/isp_aukcionai/naudotojoPuslapis.php">ATGAL</a>
             <form method='post' action='blokuoti.php'>
                 <input type='hidden' name='id' value=<?php echo $_GET['id'];?>></input>
                 <table class="table center">

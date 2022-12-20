@@ -21,7 +21,7 @@
 	</style>
 </head>
 <body>
-<?php include("header.php");?>
+<?php include($_SERVER['DOCUMENT_ROOT']."/isp_aukcionai/include/header.php");?>
 		
         <h2 style="background-color: #2b2d33;color:white;  padding:10px">Visos prekės:</h2>
 

@@ -12,7 +12,7 @@
 
     <body>
     <?php 
-        include("header.php");
+        include($_SERVER['DOCUMENT_ROOT']."/isp_aukcionai/include/header.php");
         $query = "SELECT preke.pavadinimas, preke.kategorija, preke.aprasymas, nuotrauka.pavadinimas AS photo_name FROM preke JOIN nuotrauka ON nuotrauka.fk_Prekeid_Preke=".$_GET['id']." WHERE preke.id_Preke=".$_GET['id'];
         $result = mysqli_query($db, $query);
         $row = mysqli_fetch_assoc($result);

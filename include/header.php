@@ -1,5 +1,5 @@
 <?php 
-include("config.php");
+include($_SERVER['DOCUMENT_ROOT']."/isp_aukcionai/include/config.php");
 session_start();
 
 if (isset($_SESSION['userid'])){
@@ -10,7 +10,7 @@ if (isset($_SESSION['userid'])){
 
 ?>
 <div class ="jumbotron text-center">
-    <a href="PagrindinisPuslapis.php"><h1>ISP - AUKCIONAI</h1></a>
+    <a href="/isp_aukcionai/PagrindinisPuslapis.php"><h1>ISP - AUKCIONAI</h1></a>
     <div display: flex;
     justify-content: space-between;
     align="right">
@@ -19,17 +19,17 @@ if (isset($_SESSION['userid'])){
         {
             if($USERINFO['fk_Administratorius'] != null){
                 echo "Administratorius: ".$USERINFO['vardas'] . " " . $USERINFO['pavarde'];
-                echo "<a href='adminPage.php'>Administravimo langas</a>";
+                echo "<a href='/isp_aukcionai/administravimas/adminPage.php'>Administravimo langas</a>";
             }
             else{
                 echo "Vartotojas: ".$USERINFO['vardas'] . " " . $USERINFO['pavarde'];
             }
             echo "<a href='naudotojoPuslapis.php'>Naudotojo puslapis</a>";
-            echo "<a href='logout.php'>Atsijungti</a>";
+            echo "<a href='/isp_aukcionai/prisijungimas/"."logout.php'>Atsijungti</a>";
         }
         else{
-            echo "<a href='signin.php'>Registracija</a>";
-            echo "<a href='login.php'>Prisijungimas</a>";
+            echo "<a href='/isp_aukcionai/prisijungimas/"."signin.php'>Registracija</a>";
+            echo "<a href='/isp_aukcionai/prisijungimas/"."login.php'>Prisijungimas</a>";
         }
         ?>
     </div>
