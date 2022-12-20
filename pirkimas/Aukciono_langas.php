@@ -68,7 +68,7 @@
                   <!-- Savininkas-->
                   <div class="div-group">
                     <label>Savininkas:</label>
-                    <label><?php echo "<a href='naudotojoPuslapis.php?id=".$result['id_Vartotojas']."'>".$result['vardas']." ".$result['pavarde']."</a>";?></label>
+                    <label><?php echo "<a href='/isp_aukcionai/naudotojoPuslapis.php?id=".$result['id_Vartotojas']."'>".$result['vardas']." ".$result['pavarde']."</a>";?></label>
                   </div>
                   <!-- Data-->
                   <div class="div-group">
@@ -205,7 +205,7 @@
 
               foreach ($result as $row){
                 echo "<div class='div-group'>
-                <div style='font-weight: bolder;'><a href='naudotojoPuslapis.php?id=".$row['id_Vartotojas']."'>".$row['vardas']." ".$row['pavarde']."</a></div>
+                <div style='font-weight: bolder;'><a href='/isp_aukcionai/naudotojoPuslapis.php?id=".$row['id_Vartotojas']."'>".$row['vardas']." ".$row['pavarde']."</a></div>
                 <div style='font-weight: lighter;'>".$row['tekstas']."</div>";
 
                 if (isset($USERINFO) && $USERINFO['fk_Administratorius'] != null){
