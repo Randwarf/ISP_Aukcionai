@@ -45,10 +45,12 @@ if(strlen(basename($_FILES["fileToUpload"]["name"])) == 0){
     $uploadOk = 0;
   }
 
+  $dont_upload = false;
 // Check if file already exists
 if (file_exists($target_file)) {
     $_SESSION['photo_error']= "Tokia nuotrauka jau yra įkelta.";
-  $uploadOk = 0;
+    $dont_upload = true;
+  //$uploadOk = 0;
 }
 
 if ($_FILES["fileToUpload"]["size"] > 500000) {
@@ -74,7 +76,7 @@ if ($uploadOk == 0) {
     header("Location: Prekes_sukurimo_langas.php");
     exit;
 // if everything is ok, try to upload file
-} else {
+} else if(!$dont_upload){
   if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
     echo "The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " has been uploaded.";
   } else {
@@ -84,16 +86,16 @@ if ($uploadOk == 0) {
   }
 }
 
-
+$datenow = date("Y-m-d H:i:s");
 $query = "INSERT INTO preke (aprasymas, data, pavadinimas, kategorija, fk_Vartotojasid_Vartotojas)
-    VALUES('" . $_POST['aprasymas'] . "','" .date("Y-m-d H:i:s"). "','" . $_POST['pavadinimas'] . "','" . $_POST['kategorija'] . "','".$_SESSION["userid"]."')";
+    VALUES('" . $_POST['aprasymas'] . "','" .$datenow. "','" . $_POST['pavadinimas'] . "','" . $_POST['kategorija'] . "','".$_SESSION["userid"]."')";
 if(!mysqli_query($db, $query)){
   $_SESSION['db_error'] = "insert preke error";
     header("Location: Prekes_sukurimo_langas.php");
     exit;
 }
 
-$query = "SELECT * FROM preke WHERE fk_Vartotojasid_Vartotojas='".$_SESSION["userid"]."' AND Pavadinimas='".$_POST['pavadinimas']."';";
+$query = "SELECT * FROM preke WHERE fk_Vartotojasid_Vartotojas='".$_SESSION["userid"]."' AND data='".$datenow."';";
 $result = mysqli_query($db, $query);
 $row = mysqli_fetch_row($result);
 //$_SESSION['photo_error'] = $query;

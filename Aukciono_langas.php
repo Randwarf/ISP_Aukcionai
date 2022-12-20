@@ -46,7 +46,7 @@
     }
     $id = $_GET['id'];
 
-    $query = "SELECT *, kategorija.name as name2
+    $query = "SELECT *, kategorija.name as name2, aukcionas.fk_Vartotojasid_Vartotojas as kurejas
               FROM aukcionas
               LEFT JOIN preke ON preke.id_Preke=aukcionas.fk_Prekeid_Preke
               LEFT JOIN nuotrauka ON nuotrauka.fk_Prekeid_Preke=preke.id_Preke
@@ -98,6 +98,15 @@
                   <div class="div-group">
                     <label for="status">Aukciono būsena:</label>
                     <label for="status"><?php echo $result['name'];?></label>
+                    <?php 
+                    if($result['kurejas'] == $_SESSION['userid']){
+                      $button_state = "";
+                      if($result['statusas']!=1){ 
+                        $button_state = "disabled";
+                      }
+                      $locationsteb2 = "window.location.href='inicijuoti.php?id=" . $_GET['id']."'";
+                        echo "<button style='margin-right:10px' onclick=\"".$locationsteb2."\"  ".$button_state.">Inicijuoti aukcioną</button>";
+                    } ?>
                   </div>
                   <!-- Dabartinis Statymas-->
                   <div class="div-group">
