@@ -14,7 +14,7 @@
     <?php include($_SERVER['DOCUMENT_ROOT']."/isp_aukcionai/include/header.php");?>
       <div class="container">
         <?php 
-          $sql = "SELECT * FROM `adresas` where adresas.fk_Vartotojasid_Vartotojas = '1'";
+          $sql = "SELECT * FROM `adresas` where adresas.fk_Vartotojasid_Vartotojas = '".$_SESSION['userid']."'";
           $result = mysqli_query($db, $sql);
           $has_entry = false;
           if (!$result || (mysqli_num_rows($result) < 1))
@@ -52,7 +52,7 @@
               </div>
               <div>
                 <label for="apartment_number">Buto numeris</label><br>
-                <input type="text" name="apartment_number" autocomplete="apartment_number" required placeholder="<?php if($has_entry) echo $apartment_number ?>"></input>
+                <input type="text" name="apartment_number" autocomplete="apartment_number" placeholder="<?php if($has_entry) echo $apartment_number ?>"></input>
               </div>
               <div>
                 <label for="zip_code">ZIP kodas</label><br>

@@ -17,19 +17,20 @@ if (isset($_SESSION['userid'])){
         <?php 
         if (isset($USERINFO))
         {
+            echo "Likutis:" . $USERINFO['likutis']."€ ";
             if($USERINFO['fk_Administratorius'] != null){
-                echo "Administratorius: ".$USERINFO['vardas'] . " " . $USERINFO['pavarde'];
-                echo "<a href='/isp_aukcionai/administravimas/adminPage.php'>Administravimo langas</a>";
+                echo "Administratorius: ".$USERINFO['vardas'] . " " . $USERINFO['pavarde']." ";
+                echo "<a href='/isp_aukcionai/administravimas/adminPage.php'>Administravimo langas </a>";
             }
             else{
                 echo "Vartotojas: ".$USERINFO['vardas'] . " " . $USERINFO['pavarde'];
             }
-            echo "<a href='naudotojoPuslapis.php'>Naudotojo puslapis</a>";
-            echo "<a href='/isp_aukcionai/prisijungimas/"."logout.php'>Atsijungti</a>";
+            echo "<a href='/isp_aukcionai/naudotojoPuslapis.php'>Naudotojo puslapis </a>";
+            echo "<a href='/isp_aukcionai/prisijungimas/"."logout.php'>Atsijungti </a>";
         }
         else{
-            echo "<a href='/isp_aukcionai/prisijungimas/"."signin.php'>Registracija</a>";
-            echo "<a href='/isp_aukcionai/prisijungimas/"."login.php'>Prisijungimas</a>";
+            echo "<a href='/isp_aukcionai/prisijungimas/"."signin.php'>Registracija </a>";
+            echo "<a href='/isp_aukcionai/prisijungimas/"."login.php'>Prisijungimas </a>";
         }
         ?>
     </div>
