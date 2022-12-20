@@ -24,7 +24,7 @@
     <div class='center'>
     <?php
     if (isset($_POST)){
-      echo "<a href='/isp_aukcionai/Aukciono_langas.php?id=" . $_POST['id'] . "'>Atgal</a> <hr>";
+      echo "<a href='/isp_aukcionai/pirkimas/Aukciono_langas.php?id=" . $_POST['id'] . "'>Atgal</a> <hr>";
       
       if(isset($_POST['vidurkis'])){
         $query = "SELECT AVG(verte) as average FROM statymas WHERE fk_Aukcionasid_Aukcionas=" . $_POST['id']." GROUP BY fk_Aukcionasid_Aukcionas";
