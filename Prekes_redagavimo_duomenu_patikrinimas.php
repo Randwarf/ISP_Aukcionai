@@ -43,9 +43,11 @@ if(strlen(basename($_FILES["fileToUpload"]["name"])) != 0){
   }
 
     // Check if file already exists
+    $dont_upload = false;
     if (file_exists($target_file)) {
         $_SESSION['photo_error']= "Tokia nuotrauka jau yra įkelta.";
-    $uploadOk = 0;
+        //$uploadOk = 0;
+        $dont_upload = true;
     }
 
     if ($_FILES["fileToUpload"]["size"] > 500000) {
@@ -71,15 +73,16 @@ if(strlen(basename($_FILES["fileToUpload"]["name"])) != 0){
         header("Location: Prekes_sukurimo_langas.php");
         exit;
     // if everything is ok, try to upload file
-    } else {
-    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-        echo "The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " has been uploaded.";
-    } else {
-        $_SESSION['photo_error']= "Sorry, there was an error uploading your file.";    
-        header("Location: Prekes_sukurimo_langas.php");
-        exit;
+    } else if(!$dont_upload){
+        if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+            echo "The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " has been uploaded.";
+        } else {
+            $_SESSION['photo_error']= "Sorry, there was an error uploading your file.";    
+            header("Location: Prekes_sukurimo_langas.php");
+            exit;
+        }
     }
-    }
+    
 }
 
 // $query = "SELECT * FROM preke WHERE fk_Vartotojasid_Vartotojas='".$_SESSION["userid"]."' AND pavadinimas='".$_POST['pavadinimas']."';";

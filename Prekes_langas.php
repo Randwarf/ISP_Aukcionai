@@ -19,9 +19,15 @@
              LEFT JOIN kategorija ON preke.kategorija=kategorija.id_KATEGORIJA
              LEFT JOIN aukcionas ON preke.id_Preke=aukcionas.fk_Prekeid_Preke
              WHERE id_Preke=".$_GET['id'];
-
     $result = mysqli_query($db, $query);
     $result = mysqli_fetch_assoc($result);
+
+    $initiate_auction_button_state=" ";
+    $query= "SELECT statusas FROM aukcionas WHERE fk_Prekeid_Preke=".$_GET['id'].";";
+    $res = mysqli_query($db, $query);
+    if($res && mysqli_num_rows($res) >0){
+      $initiate_auction_button_state = "disabled";
+    }
 
     ?>
 
@@ -74,12 +80,14 @@
                 if($result['kurejas'] == $_SESSION['userid']){
 
                   $locationsteb = "window.location.href='istrinti.php?id=" . $_GET['id']."'";
-                  echo "<button style='margin-right:10px' onclick=\"".$locationsteb."\" class='btn btn-primary'>Ištrinti</button>";
+                  echo "<button style='margin-right:10px' onclick=\"".$locationsteb."\" class='btn btn-primary' ".$initiate_auction_button_state.">Ištrinti</button>";
                   
                   $locationsteb2 = "window.location.href='redaguoti.php?id=" . $_GET['id']."'";
-                  echo "<button style='margin-right:10px' onclick=\"".$locationsteb2."\" class='btn btn-primary'>Redaguoti</button>";
-
+                  echo "<button style='margin-right:10px' onclick=\"".$locationsteb2."\" class='btn btn-primary' ".$initiate_auction_button_state.">Redaguoti</button>";
                   
+                  $locationsteb2 = "window.location.href='Aukciono_kurimas.php?id=" . $_GET['id']."'";
+                  echo "<button style='margin-right:10px' onclick=\"".$locationsteb2."\" class='btn btn-primary' ".$initiate_auction_button_state.">Kurti aukcioną</button>";
+
                 }
                 ?>
 
