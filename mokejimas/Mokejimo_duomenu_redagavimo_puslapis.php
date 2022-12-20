@@ -34,10 +34,11 @@
     <?php include($_SERVER['DOCUMENT_ROOT']."/isp_aukcionai/include/header.php");?>
         <div class="container">
             <div class="container">
-                <form method="post" action="">
+                
                   <div class="col-12 card card-body bg-light p-4">
                       <div class="row"> 
                         <div class="col-6">
+                        <form method="post" action="">
                             <h3>Mokėjimo duomenys</h3>
                             <br><label for="card_number"><i class="fa fa-user"></i>Kortelės numeris</label><br>
                                 <input type="text" name="card_number" placeholder="0000111144443333"><br><br>
@@ -54,8 +55,10 @@
                                 <input type="number" min="100" max="999" name="card_cvc" placeholder="601"><br><br>
                             <button type="submit" name="update_card_details">Išsaugoti</button>
                         </div>
-
+                        </form>
+                        
                         <div class="col-6">
+                        <form method="post" action="">
                             <h3>Pinigų įsidėjimas</h3>
                             <br><label for="card_number"><i class="fa fa-user"></i>Pinigų kiekis</label><br>
                             <?php
@@ -66,10 +69,11 @@
                             ?>
                                 <input style="min-width:250px" type="text" name="money_input" required placeholder="Dabartinis likutis: <?php echo $curent_piggybank;?>€"><br><br>
                             <button type="submit" name="update_piggybank">Papildyti</button>
+                            </form>
                         </div>
                     </div>
                   </div>
-                </form>
+                
             </div>
         </div>
 
