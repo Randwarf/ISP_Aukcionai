@@ -123,7 +123,7 @@
                     if (isset($_SESSION['userid']) && $_SESSION['userid']==$result['id_Vartotojas'] && isset($statymas)){
                       //jei žiūri savininkas
                       echo "<label>Pirkėjas:</label>";
-                      echo "<label>".$statymas['vardas']." ".$statymas['pavarde']."</label>";
+                      echo "<label><a href='/isp_aukcionai/naudotojoPuslapis.php?id=".$statymas['id_Vartotojas']."'>".$statymas['vardas']." ".$statymas['pavarde']."</a></label>";
                     }
                     
                     ?>
