@@ -78,7 +78,7 @@
                 <div class="col-3">
                 <?php
                     
-                    if (isset($USERINFO) && $USERINFO['fk_Administratorius'] != null){
+                    if (isset($USERINFO) && $USERINFO['fk_Administratorius'] != null && $_SESSION['userid']!=$CURRINFO['id_Vartotojas']){
                         $pav = "/isp_aukcionai/administravimas/blokavimoPuslapis.php";
                         echo "<form method='get' action='" . $pav . "'>
                         <input type='hidden'name='id' value=".$CURRINFO['id_Vartotojas']."></input>
