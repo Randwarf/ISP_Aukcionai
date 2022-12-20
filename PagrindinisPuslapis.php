@@ -42,7 +42,7 @@
 					<?php
 
 					$db = mysqli_connect(config::DB_SERVER, config::DB_USERNAME, config::DB_PASSWORD, config::DB_NAME);
-					$query = "SELECT * 
+					$query = "SELECT *, preke.pavadinimas as pavadinimas
 							  FROM preke
 							  INNER JOIN aukcionas ON preke.id_Preke=aukcionas.fk_Prekeid_Preke
 							  LEFT JOIN nuotrauka ON preke.id_Preke=nuotrauka.fk_Prekeid_Preke

@@ -46,7 +46,7 @@
     }
     $id = $_GET['id'];
 
-    $query = "SELECT *, kategorija.name as name2
+    $query = "SELECT *, kategorija.name as name2, preke.pavadinimas as pavadinimas
               FROM aukcionas
               LEFT JOIN preke ON preke.id_Preke=aukcionas.fk_Prekeid_Preke
               LEFT JOIN nuotrauka ON nuotrauka.fk_Prekeid_Preke=preke.id_Preke
