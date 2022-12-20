@@ -62,7 +62,7 @@
               <div class="col-12 card card-body bg-light p-4">
                 <div class="row"> 
                   <div class="col-4">
-                    <img style="max-width:100%; max-height:100%;"src=<?php echo "'".$result['nuoroda']."'";?> alt="Blue toy">
+                    <img style="max-width:100%; max-height:100%;"src=<?php echo "'/isp_aukcionai/".$result['nuoroda']."'";?> alt="Blue toy">
                 </div>
                 <div class="col-8">
                   <!-- Savininkas-->

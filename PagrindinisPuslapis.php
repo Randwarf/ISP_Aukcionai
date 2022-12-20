@@ -57,7 +57,7 @@
 							  <div class='card-body'>
 		                      <h5 class='card-title'>". $item['pavadinimas']."</h5>
 		                      <p class='card-text'>".$item['aprasymas']."</p>
-		                      <a href='Aukciono_langas.php?id=".$item['id_Aukcionas']."' class='btn btn-primary'>Peržiūrėti</a>
+		                      <a href='/isp_aukcionai/pirkimas/Aukciono_langas.php?id=".$item['id_Aukcionas']."' class='btn btn-primary'>Peržiūrėti</a>
 	                          </div>
                               </div>";
 }
@@ -73,7 +73,7 @@
                 $query = "SELECT * FROM kategorija ORDER BY name ASC";
                 $result = mysqli_query($db, $query);
 				foreach ($result as $row){
-	                echo "<div class='row'><a href='Aukcionu_saraso_langas.php?id=" .$row['id_KATEGORIJA']. "'>" .$row['name']. "</a></div>";
+	                echo "<div class='row'><a href='/isp_aukcionai/pirkimas/Aukcionu_saraso_langas.php?id=" .$row['id_KATEGORIJA']. "'>" .$row['name']. "</a></div>";
 				}
 				?>
               </div>
