@@ -34,7 +34,7 @@
 
                 foreach ($result as $row){
                     echo "<tr>";
-                    echo "<td><a href='/isp_aukcionai/Prekes_langas.php?id=".$row['id_Preke']."'>".$row['pavadinimas']."</a></td>";
+                    echo "<td><a href='/isp_aukcionai/pardavimas/Prekes_langas.php?id=".$row['id_Preke']."'>".$row['pavadinimas']."</a></td>";
                     echo "<td>". $row['aprasymas'] ."</td>";
                     echo "<th>" . $row['vardas'] . " " . $row['pavarde'] . "</th>";
                     echo "</tr>";

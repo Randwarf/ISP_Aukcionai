@@ -67,13 +67,10 @@ if ($CURRINFO['id_Vartotojas']==$_SESSION['userid']){
                     <form action='/isp_aukcionai/mokejimas/Mokejimo_duomenu_redagavimo_puslapis.php'>
                         <button class='button'>Mokėjimo duomenys</button>
                     </form>
-                    <form action='Pinigines_papildymas.php'>
-                        <button class='button'>Įsidėti pinigėlių</button>
-                    </form>
-                    <form action='stebimi.php'>
+                    <form action='/isp_aukcionai/pirkimas/stebimi.php'>
                         <button class='button'>Stebimi aukcionai</button>
                     </form>
-                    <form action='manoPrekes.php'>
+                    <form action='/isp_aukcionai/pardavimas/manoPrekes.php'>
                         <button class='button'>Mano prekes</button>
                     </form>";
 }

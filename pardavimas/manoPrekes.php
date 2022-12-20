@@ -43,7 +43,7 @@
 			}
             foreach ($result as $item){
 	            echo "<div class='card' style='width: 18rem; border:1;'>
-				<img src='" . $item['nuoroda'] . "' class='card-img-top' alt='...'>
+				<img src='/isp_aukcionai/" . $item['nuoroda'] . "' class='card-img-top' alt='...'>
 				<div class='card-body'>
 					<h5 class='card-title'>". $item['name']."</h5>
 					<p class='card-text'>".$item['aprasymas']."</p>
