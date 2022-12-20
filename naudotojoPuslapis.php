@@ -58,10 +58,10 @@
                     <form action="/isp_aukcionai/mokejimas/Adreso_atnaujinimo_puslapis.php">
                         <button class="button">Atnaujinti adresą</button>
                     </form>
-                    <form action="Atsiskaitymo_puslapis.php">
+                    <form action="/isp_aukcionai/mokejimas/Atsiskaitymo_puslapis.php">
                         <button class="button">Atsiskaitymai</button>
                     </form>
-                    <form action="Mokejimo_duomenu_redagavimo_puslapis.php">
+                    <form action="/isp_aukcionai/mokejimas/Mokejimo_duomenu_redagavimo_puslapis.php">
                         <button class="button">Mokėjimo duomenys</button>
                     </form>
                     <form action="Pinigines_papildymas.php">
