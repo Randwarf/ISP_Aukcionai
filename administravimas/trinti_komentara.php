@@ -12,5 +12,5 @@ $back = $_GET['back'];
 
 $query = "DELETE FROM komentaras WHERE id_Komentaras=" . $id;
 mysqli_query($db, $query);
-header("Location: /isp_aukcionai/Aukciono_langas.php?id=" . $back);
+header("Location: /isp_aukcionai/pirkimas/Aukciono_langas.php?id=" . $back);
 ?>
