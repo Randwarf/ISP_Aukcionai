@@ -53,7 +53,7 @@ if (file_exists($target_file)) {
   //$uploadOk = 0;
 }
 
-if ($_FILES["fileToUpload"]["size"] > 500000) {
+if ($_FILES["fileToUpload"]["size"] > 5000000) {
     $_SESSION['photo_error']= "Failas per didelis";
   $uploadOk = 0;
 }

@@ -94,7 +94,7 @@
                <?php
                if ($result['statusas']==1){
                  echo "<form>";
-                 echo "<input type='button' class='btn btn-primary' value='Inicijuoti' onclick='window.location.href='Aukciono_iniciavimas.php?id=" . $_GET['id'] . "\>";
+                 echo "<input type='button' class='btn btn-primary' value='Inicijuoti' onclick=\"window.location.href='inicijuoti.php?id=" . $_GET['id'] . "'\"\>";
                  echo "</form>";
                }
                ?>

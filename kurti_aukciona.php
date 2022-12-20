@@ -1,5 +1,5 @@
 <?php
-include("header.php");
+include($_SERVER['DOCUMENT_ROOT']."/isp_aukcionai/include/header.php");
 $_SESSION['aukciono_pradzia'] = $_POST['aukciono_pradzia'];
 $_SESSION['aukciono_pabaiga'] = $_POST['aukciono_pabaiga'];
 $_SESSION['min_sum'] = $_POST['min_sum'];
@@ -41,7 +41,7 @@ if(mysqli_query($db, $query)){
     $_SESSION['min_sum_error']="";
     $_SESSION['max_sum_error']="";
     $_SESSION['aukciono_statuso_error']="";
-    header("Location: Aukciono_langas.php?id=".$row['id_Aukcionas']);
+    header("Location: /isp_aukcionai/pirkimas/Aukciono_langas.php?id=".$row['id_Aukcionas']);
     exit;
 }
 else{

@@ -104,7 +104,7 @@
                       if($result['statusas']!=1){ 
                         $button_state = "disabled";
                       }
-                      $locationsteb2 = "window.location.href='inicijuoti.php?id=" . $_GET['id']."'";
+                      $locationsteb2 = "window.location.href='/isp_aukcionai/inicijuoti.php?id=" . $_GET['id']."'";
                         echo "<button style='margin-right:10px' onclick=\"".$locationsteb2."\"  ".$button_state.">Inicijuoti aukcioną</button>";
                     } ?>
                   </div>
