@@ -219,7 +219,7 @@
 
               <form method="post" action="skelbti_zinute.php?id=<?php echo $id;?>">
                 <br>
-                <input style="background-color:powderblue;" <?php if(!isset($_SESSION['userid']) || $USERINFO['blokuotas']==1){echo "type='hidden'";}?> name="message" id="message" type="text" placeholder="Rašyti privačia žinute" class="form-control">
+                <input style="background-color:powderblue;" <?php if(!isset($_SESSION['userid']) || $USERINFO['blokuotas']==1){echo "type='hidden'";}?> required name="message" id="message" type="text" placeholder="Rašyti privačia žinute" class="form-control">
                 <input style="background-color:powderblue;"<?php if(!isset($_SESSION['userid']) || $USERINFO['blokuotas']==1){echo "type='hidden'";}?> type="submit" value="Siųsti" class="form-control">
               </form>
               <?php
