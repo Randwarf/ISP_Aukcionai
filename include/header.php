@@ -29,7 +29,7 @@ if (isset($_SESSION['userid'])){
             echo "<a href='/isp_aukcionai/prisijungimas/"."logout.php'>Atsijungti </a>";
         }
         else{
-            echo "<a href='/isp_aukcionai/prisijungimas/"."signin.php'>Registracija </a>";
+            echo "<a href='/isp_aukcionai/prisijungimas/"."signup.php'>Registracija </a>";
             echo "<a href='/isp_aukcionai/prisijungimas/"."login.php'>Prisijungimas </a>";
         }
         ?>

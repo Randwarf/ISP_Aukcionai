@@ -104,7 +104,7 @@ if (isset($_POST['user'])){
 			
 			<p>
 			<button type ="submit">Prisijungti</button>
-			<a class ="regis" href = "signin.php"> Registruotis</a>
+			<a class ="regis" href = "signup.php"> Registruotis</a>
 			</p>
 		</form>
 		
