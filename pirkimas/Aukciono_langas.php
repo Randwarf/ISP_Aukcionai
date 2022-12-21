@@ -145,7 +145,7 @@
                     <label for="bid_size">Statoma suma: (min <?php echo $current_max_bid; ?> max <?php echo $result['max'];?>):</label>
                     <input type="number" name="bid_size" step='.01' min='<?php echo $current_max_bid; ?>' max='<?php echo $result['max'];?>' required <?php if($current_max_bid > $result['max']) echo 'disabled';?>>
                     <input type="hidden" name="auction_id" value='<?php echo $id ?>'>
-                    <input class='btn btn-secondary btn-sm' type="submit" name="submit_bid" value="Statyti" <?php if($current_max_bid > $result['max']) echo 'disabled';?>>
+                    <input class='btn btn-secondary btn-sm' style="margin-top: -6px;" type="submit" name="submit_bid" value="Statyti" <?php if($current_max_bid > $result['max']) echo 'disabled';?>>
                    </form>
                    <?php 
                     $fullUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
@@ -161,7 +161,7 @@
               <div class="row">
 
                  <form action='/isp_aukcionai/PagrindinisPuslapis.php'>
-                        <button style="margin-right:10px; margin-left:10px" class="btn btn-primary">Grįžti</button>
+                        <button style="margin-right:10px; margin-left:10px" class="btn btn-secondary">Grįžti</button>
                   </form>
                  
                  <?php 
@@ -171,7 +171,7 @@
                 if (mysqli_num_rows($stebimi) < 1){
                   if(isset($_SESSION['userid'])){
                     $locationsteb = "window.location.href='prideti_stebima.php?id=" . $_GET['id']."'";
-                    echo "<button style='margin-right:10px' onclick=\"".$locationsteb."\" class='btn'><i class='fa fa-star-o'></i></button>";
+                    echo "<button style='margin-right:10px;' onclick=\"".$locationsteb."\" class='btn'><i class='fa fa-star-o'></i></button>";
                   }
                 }
                 else{
