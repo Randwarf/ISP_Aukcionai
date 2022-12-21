@@ -40,19 +40,40 @@
                         <div class="col-6">
                         <form method="post" action="">
                             <h3>Mokėjimo duomenys</h3>
+                            <?php
+                                $sql = "SELECT * FROM `kortele` WHERE kortele.fk_Vartotojasid_Vartotojas = '".$_SESSION['userid']."'";
+                                $result = mysqli_query($db, $sql);
+                                //nera adreso duomenu
+                                if(mysqli_num_rows($result) < 1) 
+                                {
+                                    $card_no = 'ex. 0000 1111 2222 3333';
+                                    $card_mo = date("n");
+                                    $card_yr = substr(date("Y"), -2);
+                                    $card_cv = 'ex. 601';
+                                }
+                                else
+                                {
+                                    $row = mysqli_fetch_assoc($result);
+                                    $card_no = $row['korteles_nr'];
+                                    $card_mo = $row['galiojimo_menuo'];
+                                    $card_yr = $row['galiojimo_metai'];
+                                    $card_cv = $row['cvc'];
+                                }
+                                
+                            ?>
                             <br><label for="card_number"><i style="padding-right:3px" class="fa fa-user"></i>Kortelės numeris</label><br>
-                                <input class="form-control col-8" type="text" name="card_number" placeholder="0000 1111 4444 3333" required><br>
-                            <label for="adr"><i class="fa fa-address-card-o" style="padding-right:3px"></i> Kortelės galiojimo data</label><br>
+                                <input class="form-control col-8 creditCardText" type="text" name="card_number"  minlength="19"  maxlength="19" placeholder="<?php echo $card_no;?>" required><br>
+                            <label for="adr"><i class="fa fa-address-card-o" style="padding-right:3px"></i> Kortelės galiojimo data (yy-mm)</label><br>
                                 <div class="row" style=" padding-left: 5px;">
                                     <div class="column" style="max-width:100px">
-                                    <input class="form-control" style="max-width:100px" type="number" name="expiration_year" required min="<?php echo date("Y"); ?>" max="<?php echo date("Y")+10; ?>" placeholder="<?php echo date("Y"); ?>"><br>
+                                    <input class="form-control" style="max-width:100px" type="number" name="expiration_year" required min="<?php echo substr(date("Y"), -2); ?>" max="<?php echo $card_yr+10; ?>" placeholder="<?php echo $card_yr; ?>"><br>
                                     </div>
                                     <div class="column"  style="max-width:100px" >
-                                    <input class="form-control" style="max-width:100px" type="number" name="expiration_month" required min="1" max="12" placeholder="<?php echo date("n"); ?>">
+                                    <input class="form-control" style="max-width:100px" type="number" name="expiration_month" required min="1" max="12" onchange="if(parseInt(this.value,10)<10)this.value='0'+this.value;" placeholder="<?php echo $card_mo; ?>">
                                     </div>
                                 </div>
                             <label for="card_cvc"><i style="padding-right:3px" class="fa fa-institution"></i>CVC</label><br>
-                                <input class="form-control col-8" type="number" min="100" max="999" name="card_cvc" required placeholder="601"><br>
+                                <input class="form-control col-8" type="number" min="100" max="999" name="card_cvc" required placeholder="<?php echo $card_cv; ?>"><br>
                             <button type="submit" class="btn btn-secondary btn-sm" name="update_card_details">Išsaugoti</button>
                         </div>
                         </form>
@@ -60,7 +81,7 @@
                         <div class="col-6">
                         <form method="post" action="">
                             <h3>Pinigų įsidėjimas</h3>
-                            <br><label for="card_number"><i style="padding-right:3px" class="fa fa-user"></i>Pinigų kiekis</label><br>
+                            <br><label for="money_input"><i style="padding-right:3px" class="fa fa-user"></i>Pinigų kiekis</label><br>
                             <?php
                                 $sql = "SELECT * FROM `vartotojas` WHERE vartotojas.id_Vartotojas = '".$_SESSION['userid']."'";
                                 $result = mysqli_query($db, $sql);
@@ -80,6 +101,7 @@
         <?php
             if(isset($_POST['update_card_details'])){
                 $card_number = $_POST['card_number'];
+                $card_number = str_replace(' ', '', $card_number);
                 $expiration_year = $_POST['expiration_year'];
                 $expiration_month = $_POST['expiration_month'];
                 $card_cvc = $_POST['card_cvc'];
@@ -101,7 +123,10 @@
                     if (!mysqli_query($db, $sql))  die ("Klaida įrašant:" .mysqli_error($db));
                 }
                 mysqli_close($db);
-                header('Location: Mokejimo_duomenu_redagavimo_puslapis.php');
+                $page = $_SERVER['REQUEST_URI'];
+                echo '<script type="text/javascript">';
+                echo 'window.location.href="'.$page.'";';
+                echo '</script>';
         }
     ?>
         <?php
@@ -113,8 +138,20 @@
                     if (!mysqli_query($db, $sql))  die ("Klaida įrašant:" .mysqli_error($db));
 
                     mysqli_close($db);
-                    header('Location: Mokejimo_duomenu_redagavimo_puslapis.php');
+                    $page = $_SERVER['REQUEST_URI'];
+                    echo '<script type="text/javascript">';
+                    echo 'window.location.href="'.$page.'";';
+                    echo '</script>';
             }
         ?>
+        <script>
+        $('.creditCardText').on('keyup', function() {
+        var foo = $(this).val().split(" ").join(""); 
+        if (foo.length > 0) {
+            foo = foo.match(new RegExp('.{1,4}', 'g')).join(" ");
+        }
+        $(this).val(foo);
+        });
+    </script>
     </body>
 </html>
