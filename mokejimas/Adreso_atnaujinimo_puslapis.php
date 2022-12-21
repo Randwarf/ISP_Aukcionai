@@ -44,23 +44,23 @@
                 <h3>Adreso atnaujinimas</h3>
               <div>
                 <label for="street">Gatvė</label><br>
-                <input type="text" name="street" autocomplete="street" required placeholder="<?php if($has_entry) echo $street ?>"></input>
+                <input class="form-control" type="text" name="street" autocomplete="street" required placeholder="<?php if($has_entry) echo $street ?>"></input>
               </div>
               <div>
                 <label for="house_number">Namo numeris</label><br>
-                <input type="text" name="house_number" autocomplete="house_number" required placeholder="<?php if($has_entry) echo $house_number ?>"></input>
+                <input class="form-control" type="text" name="house_number" autocomplete="house_number" required placeholder="<?php if($has_entry) echo $house_number ?>"></input>
               </div>
               <div>
                 <label for="apartment_number">Buto numeris</label><br>
-                <input type="text" name="apartment_number" autocomplete="apartment_number" placeholder="<?php if($has_entry) echo $apartment_number ?>"></input>
+                <input class="form-control" type="text" name="apartment_number" autocomplete="apartment_number" placeholder="<?php if($has_entry) echo $apartment_number ?>"></input>
               </div>
               <div>
                 <label for="zip_code">ZIP kodas</label><br>
-                <input type="text" name="zip_code" autocomplete="zip_code" placeholder="<?php if($has_entry) echo $zip_code ?>">
+                <input class="form-control" type="text" name="zip_code" autocomplete="zip_code" placeholder="<?php if($has_entry) echo $zip_code ?>">
               </div>
               <div>
                 <label for="country">Šalis</label><br>
-                <select name="country" autocomplete="country" enterkeyhint="done" required >
+                <select class="form-control" name="country" autocomplete="country" enterkeyhint="done" required >
                     <option></option>
                     <option value="AF">Afghanistan</option>
                     <option value="AX">Åland Islands</option>
