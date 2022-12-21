@@ -159,9 +159,10 @@
               <br>
               <!-- Grįzti atgal į puslapi mygtukas-->
               <div class="row">
-                <form>
-                  <input style="margin-right:10px; margin-left:10px" type="button" class="btn btn-primary" value="Grįžti" onclick="history.back()">
-                 </form>
+
+                 <form action='/isp_aukcionai/PagrindinisPuslapis.php'>
+                        <button style="margin-right:10px; margin-left:10px" class="btn btn-primary">Grįžti</button>
+                  </form>
                  
                  <?php 
                 if (isset($_SESSION['userid'])){
