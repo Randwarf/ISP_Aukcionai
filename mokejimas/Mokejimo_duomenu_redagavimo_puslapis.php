@@ -42,22 +42,24 @@
                             <h3>Mokėjimo duomenys</h3>
                             <?php
                                 $sql = "SELECT * FROM `kortele` WHERE kortele.fk_Vartotojasid_Vartotojas = '".$_SESSION['userid']."'";
-                                $result = mysqli_query($db, $sql);
+                                $result_card_details = mysqli_query($db, $sql);
                                 //nera adreso duomenu
-                                if(mysqli_num_rows($result) < 1) 
+                                if(mysqli_num_rows($result_card_details) < 1) 
                                 {
                                     $card_no = 'ex. 0000 1111 2222 3333';
                                     $card_mo = date("n");
                                     $card_yr = substr(date("Y"), -2);
                                     $card_cv = 'ex. 601';
+                                    $has_card = false;
                                 }
                                 else
                                 {
-                                    $row = mysqli_fetch_assoc($result);
+                                    $row = mysqli_fetch_assoc($result_card_details);
                                     $card_no = $row['korteles_nr'];
                                     $card_mo = $row['galiojimo_menuo'];
                                     $card_yr = $row['galiojimo_metai'];
                                     $card_cv = $row['cvc'];
+                                    $has_card = true;
                                 }
                                 
                             ?>
@@ -88,8 +90,8 @@
                                 $row = mysqli_fetch_assoc($result);
                                 $curent_piggybank = $row['likutis'];
                             ?>
-                            <input class="form-control col-8" type="text" name="money_input" required placeholder="Likutis: <?php echo $curent_piggybank;?>€"><br>
-                            <button class="btn btn-secondary btn-sm" type="submit" name="update_piggybank">Papildyti</button>
+                            <input class="form-control col-8" <?php if(!$has_card) {echo 'disabled';}?> type="text" name="money_input" required placeholder="Likutis: <?php echo $curent_piggybank;?>€"><br>
+                            <button class="btn btn-secondary btn-sm" <?php if(!$has_card) {echo 'disabled';}?> type="submit" name="update_piggybank">Papildyti</button>
                             </form>
                         </div>
                     </div>
