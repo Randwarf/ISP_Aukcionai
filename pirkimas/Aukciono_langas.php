@@ -95,7 +95,7 @@
                       </div>
                   </div>
                   <!-- Statusas-->
-                  <div class="div-group">
+                  <div class="div-group" style="margin-top: 10px">
                     <label for="status">Aukciono būsena:</label>
                     <label for="status"><?php echo $result['name'];?></label>
                     <?php 
@@ -105,7 +105,7 @@
                         $button_state = "disabled";
                       }
                       $locationsteb2 = "window.location.href='/isp_aukcionai/pardavimas/inicijuoti.php?id=" . $_GET['id']."'";
-                        echo "<button style='margin-right:10px' onclick=\"".$locationsteb2."\"  ".$button_state.">Inicijuoti aukcioną</button>";
+                        echo "<button class='btn btn-secondary btn-sm' style='margin-right:10px;' onclick=\"".$locationsteb2."\"  ".$button_state.">Inicijuoti aukcioną</button>";
                     } ?>
                   </div>
                   <!-- Dabartinis Statymas-->
@@ -145,7 +145,7 @@
                     <label for="bid_size">Statoma suma: (min <?php echo $current_max_bid; ?> max <?php echo $result['max'];?>):</label>
                     <input type="number" name="bid_size" step='.01' min='<?php echo $current_max_bid; ?>' max='<?php echo $result['max'];?>' required <?php if($current_max_bid > $result['max']) echo 'disabled';?>>
                     <input type="hidden" name="auction_id" value='<?php echo $id ?>'>
-                    <input type="submit" name="submit_bid" value="Statyti" <?php if($current_max_bid > $result['max']) echo 'disabled';?>>
+                    <input class='btn btn-secondary btn-sm' type="submit" name="submit_bid" value="Statyti" <?php if($current_max_bid > $result['max']) echo 'disabled';?>>
                    </form>
                    <?php 
                     $fullUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";

@@ -313,11 +313,14 @@
                     <option value="ZW">Zimbabwe</option>
                 </select> 
               </div>
+              <br>
+              <button class="btn btn-secondary btn-sm" type="submit" name="update_address">Atnaujinti</button>
             </div>
             </div>
+            
           </div>
           <br>
-          <button type="submit" name="update_address">Išsaugoti</button>
+          
         </form>
       </div>
       
